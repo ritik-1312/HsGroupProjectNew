@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- og -->
+	<!-- our wordk is  annotation-driven -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+
+<!-- og -->
+    <!-- Provide support for component scanning -->
+    <context:component-scan base-package="com.controller" />
+      <context:component-scan base-package="com.dao" />
+        <context:component-scan base-package="com.model" />
+         <context:component-scan base-package="com.service" /> 
+ <!--  og   -->
+    <!-- Provide support for conversion, formatting, and validation -->
+    
+
+	<mvc:resources mapping="/assets/**" location="assets/" />
+
+	
+    
+<!-- og -->
+    
+    <bean id="viewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/view/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+        
+       <!--  database info undo comment when needed-->
+        
+        <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		name="ds">
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/hs_group" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+
+	</bean>
+	
+	<!--  for hibernate  -->
+     <tx:annotation-driven transaction-manager="hibernateTransactionManager" />
+
+<!-- then hibernate config undo comment when needed -->
+<bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		name="sessionFactory">
+		<property name="dataSource" ref="ds"></property>
+        
+	
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<!-- for entity -->
+		<property name="annotatedClasses">
+			<list>
+				<value>com.model.UserModel</value>
+			</list>
+		</property>
+		</bean>
+		 <!-- Hibernate Transaction Manager -->
+    <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+		
+		<!-- mailsender -->
+		 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+        <property name="host" value="smtp.gmail.com" />
+      <!--   <property name="port" value="your_mail_server_port" /> -->
+        <property name="username" value="helloajinkya2001@gmail.com" />
+        <property name="password" value="tlyxiuqmkowwsbqu" />
+
+        <property name="javaMailProperties">
+          <props>  
+		              <prop key="mail.smtp.auth">true</prop>  
+		              <prop key="mail.smtp.socketFactory.port">465</prop>  
+		              <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>  
+		              <prop key="mail.smtp.port">465</prop>  
+		        </props>  
+        </property>
+    </bean>
+		<!-- 
+		<bean id="service" class="com.service.UserServiceImpl">
+        	
+        	<property name="mailSender" ref="mailSender"></property>
+        </bean>
+        
+         -->
+     
+
+        
+			
+		
+		
+        
+</beans>
