@@ -31,20 +31,20 @@
     <header class="header">
             <nav class="nav container flex">
                     <a href="#" class="logo-content flex">
-                        <i class='bx bx-coffee logo-icon'></i>
+                        <i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"></i>
                        
                         <span class="logo-text">HS Group</span>
                     </a>
 
                     <div class="menu-content">
                             <ul class="menu-list flex">
-                                    <li><a href="index" class="nav-link active-navlink">home</a></li>
+                                    <li><a href="index.jsp" class="nav-link active-navlink">home</a></li>
                                     <li><a href="About" class="nav-link">about</a></li>
                                     <li><a href="#menu" class="nav-link">service</a></li>
                                     <li><a href="#review" class="nav-link">review</a></li>
                                     <li><a href="gallery" class="nav-link">Gallery</a></li>
-                                   
-                                     <li><a href="#newsletter" class="nav-link">Contact</a></li>
+                                    <li><a href="#newsletter" class="nav-link">Contact</a></li>
+                                    <li><a href="placement" class="nav-link">Placements</a></li>
                             </ul>
                             
                             <div class="media-icons flex">
@@ -109,11 +109,11 @@
 
                                                 <div class="home-details">
                                                         <div class="home-text">
-                                                                <h4 class="homeSubtitle">Enjoy the finest coffee drinks.</h4>
-                                                                <h2 class="homeTitle">Enjoy Our Exclusive <br> Coffee and Cocktails</h2>
+                                                                <h4 class="homeSubtitle">Offering a free Spring course</h4>
+                                                                <h2 class="homeTitle">Enjoy Our Exclusive Course <br> Spring Framework</h2>
                                                         </div>
 
-                                                        <button class="button">Explore</button>
+                                                      <a href="login"><button class="button">Explore</button></a>
                                                 </div>
                                         </div>
 
@@ -122,11 +122,11 @@
 
                                                 <div class="home-details">
                                                         <div class="home-text">
-                                                                <h4 class="homeSubtitle">Making Our coffee with lover.</h4>
-                                                                <h2 class="homeTitle">Alluring and Fragrant <br> Coffee Aroma</h2>
+                                                                <h4 class="homeSubtitle">Facilitated 300+ Placements</h4>
+                                                                <h2 class="homeTitle">Facilitated 300+ Successful Placements <br> In just 4 years</h2>
                                                         </div>
 
-                                                        <button class="button">Explore</button>
+                                                        <a href="placement"><button class="button">Explore</button></a>
                                                 </div>
                                         </div>
                                 </div>

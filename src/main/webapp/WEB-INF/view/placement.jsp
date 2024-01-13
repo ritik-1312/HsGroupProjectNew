@@ -216,39 +216,6 @@
   <br> <br> <br>
   
   
-  
-<section class="section about" id="about">
-                <div class="about-content container">
-                        <div class="about-imageContent">
-                        
-                                <img src="assets/img/home/undraw_Going_up_re_86kg.png" alt="" class="">
-
-                              
-                        </div>
-
-                        <div class="about-details">
-                                <div class="about-text">
-                                        <h4 class="content-subtitle"><i>Software Training Center and Consultancy</i></h4> <br> 
-                                        <p class="he">Our results reflect the passion, <br>hardwork and efforts of our students and teachers.</p><br> 
-                                        <p class="he">Our goal is to improve the skill of student and make their future more bright and develope them to achieve their goal.</p>
-<br> 
-                                       
-                                </div>
-
-                                <div class="about-buttons flex">
-                                        <button class="button">About Us</button>
-                                        <a href="#" class="about-link flex">
-                                                <span class="link-text">see more</span>
-                                                <i class='bx bx-right-arrow-alt about-arrowIcon'></i>
-                                        </a>
-                                </div>
-                        </div>
-
-                </div>
-        </section>
-
-
-  
     <section class="section review" id="review">
             <div class="review-container container">
                     <div class="review-text">

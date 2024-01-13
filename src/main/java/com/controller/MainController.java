@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller 
 public class MainController {
+
+	
 	@RequestMapping("/hi")
 	public String first()
 	{
@@ -34,6 +36,11 @@ public String getlogin() {
 	@RequestMapping("dashboard")
 	 public String getdashboard(){
 		return "Dashboard";
+	}
+	
+	@RequestMapping("placement")
+	 public String getPlacement(){
+		return "placement";
 	}
 
 	//@RequestMapping("logerif")

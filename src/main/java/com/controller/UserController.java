@@ -19,13 +19,15 @@ import com.model.UserModel;
 import com.service.UserService;
 import com.service.UserServiceImpl;
 
+import jakarta.mail.MessagingException;
+
 @Controller
 public class UserController {
  @Autowired
  UserService userService;
  
 	@RequestMapping(value ="save", method = RequestMethod.POST)
-	public String saveData(@ModelAttribute("um") UserModel um, HttpSession session, @RequestParam("email")String email) {
+	public String saveData(@ModelAttribute("um") UserModel um, HttpSession session, @RequestParam("email")String email) throws MessagingException {
 		// email checking
 		List<UserModel> list = userService.checkRegistration(email);
 		if(list!=null)
@@ -88,7 +90,7 @@ public class UserController {
 	 }
 	 
 	 @RequestMapping(value ="forgets", method=RequestMethod.POST )
-	 public String GetEmail(@RequestParam("email") String email) {
+	 public String GetEmail(@RequestParam("email") String email) throws MessagingException {
 		 Random rd = new Random();
 			int otps = rd.nextInt(999999) + 100000;
 
@@ -103,7 +105,7 @@ public class UserController {
 	 
 	 //cus = to sending password form otp page
 	 @RequestMapping(value = "cus", method = RequestMethod.POST)
-	    public String CheckotpandSendpasswor (Model model, @RequestParam ("otp")int otp) 
+	    public String CheckotpandSendpasswor (Model model, @RequestParam ("otp")int otp) throws MessagingException 
 	        {
 		 userService.cecksendPassword(otp);
 

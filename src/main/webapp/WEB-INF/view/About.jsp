@@ -30,7 +30,7 @@
     <header class="header">
             <nav class="nav container flex">
                     <a href="#" class="logo-content flex">
-                        <i class='bx bx-coffee logo-icon'></i>
+                        <i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"></i>
                        
                         <span class="logo-text">HS Group</span>
                     </a>
