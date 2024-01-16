@@ -39,11 +39,10 @@
                             <ul class="menu-list flex">
                                     <li><a href="index.jsp" class="nav-link ">home</a></li>
                                     <li><a href="About" class="nav-link active-navlink">About</a></li>
-                                    <!-- <li><a href="#menu" class="nav-link">service</a></li>
-                                    <li><a href="#review" class="nav-link">review</a></li> -->
                                     <li><a href="gallery" class="nav-link ">Gallery</a></li>
-                                   
-                                     <li><a href="#newsletter" class="nav-link">Contact</a></li>
+                                    <li><a href="placement" class="nav-link">Placements</a></li>
+                                    <li><a href="login" class="nav-link">Our Courses</a></li>
+                                    <li><a href="#newsletter" class="nav-link">Contact</a></li>
                             </ul>
                             
                             <div class="media-icons flex">
