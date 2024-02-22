@@ -66,16 +66,14 @@ public String getlogin() {
 	}
 	
 
-	@RequestMapping(value = "adlogin")
-	public String adminlogin(@ModelAttribute("user") LoginModel user,Model model,HttpSession session) {
-		//System.out.println("username :" +user.getEmail()+ "   pass:::" +user.getPassword() );
-		if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
-			return "AdminDashboard";	
-		} else {
-			return "redirect:/hsadamlogin";
-		}
-	}
-
+	/*
+	 * @RequestMapping(value = "adlogin") public String
+	 * adminlogin(@ModelAttribute("user") LoginModel user,Model model,HttpSession
+	 * session) { //System.out.println("username :" +user.getEmail()+ "   pass:::"
+	 * +user.getPassword() ); if (user.getEmail().equals("admin") &&
+	 * user.getPassword().equals("admin")) { return "AdminDashboard"; } else {
+	 * return "redirect:/hsadamlogin"; } }
+	 */
 	
 	
 	

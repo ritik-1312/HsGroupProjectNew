@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.UserModel;
 
@@ -111,6 +111,50 @@ public class UserDaoimpl implements UserDao {
          return query.uniqueResult();
     	
     }
+  
+	public String ContData(ContactUsMessage cm) {
+		Session session= sessionFactory.openSession();
+		cm.setStatus("unseen");
+		session.save(cm);
+		return null;
+	}
+
+	
+	public List<ContactUsMessage> getContactUs() {
+		// TODO Auto-generated method stub
+		Session session= sessionFactory.openSession();
+		
+		return session.createQuery("from ContactUsMessage").list();
+	}
+
+
+	@Transactional
+	public void updateStatus(String messageId) {
+		// TODO Auto-generated method stub
+		 String updateQuery = "UPDATE ContactUsMessage m SET m.Status = 'seen' WHERE m.id = '"+messageId+"'";
+		    sessionFactory.getCurrentSession()
+		        .createQuery(updateQuery)
+		      
+		        .executeUpdate();
+	}
+	
+	@Transactional
+	
+	public long delete(long id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		ContactUsMessage cm = (ContactUsMessage) session.get(ContactUsMessage.class, id);
+		session.delete(cm);
+		return 0;
+	}
+	@Transactional
+	
+	public void getDeleteMultiple(Long messageId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		ContactUsMessage cm = (ContactUsMessage) session.get(ContactUsMessage.class, messageId);
+		session.delete(cm);
+	}    
     
     
     }
