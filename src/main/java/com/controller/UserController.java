@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.UserModel;
 import com.service.UserService;
@@ -111,6 +112,13 @@ public class UserController {
 
 		   return "pswotp";
 	        }
+	 @RequestMapping(value="login1", method= RequestMethod.POST)
+	 public String ContactUs(@ModelAttribute("cm") ContactUsMessage cm, HttpSession session) {
+		 
+		 String status= userService.ContData(cm);
+		return "About";
+		 
+	 }
 	 
 }
 

@@ -374,35 +374,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/Dashboard.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButtons = document.querySelectorAll('.toggle-btn');//This line selects all elements with the class toggle-btn and stores them in the toggleButtons NodeList. 
-    
-            function toggleSectionVisibility(sectionId) {   //data-target="helloSection1"
-                const section = document.getElementById(sectionId);//This function takes a sectionId as an argument and is responsible for toggling the visibility of sections based on the provided ID.
-                const allSections = document.querySelectorAll('.section');//all elements in the HTML document that have the CSS class section.
-    
-                allSections.forEach(s => {          //s represents each individual element (section) in the NodeList during each iteration of the loop.
-                    if (s.id === sectionId) {
-                        
-                        s.style.display = 'block';
-                    } else {
-                        s.style.display = 'none';
-                    }
-                });
-            }
-        
-           /* This code iterates through each toggle button and adds a click event listener to each. 
-            When a button is clicked, it retrieves the data-target attribute value, 
-            representing the ID of the section to be displayed.
-            It then calls the toggleSectionVisibility function with the corresponding sectionId.*/
-            toggleButtons.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const targetSectionId = this.getAttribute('data-target');//<li class="toggle-btn sidebar-list-item" data-target="helloSection1">
-                    toggleSectionVisibility(targetSectionId);
-                });
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+        const defaultSectionId = 'helloSection1';
+
+        function toggleSectionVisibility(sectionId) {
+            const section = document.getElementById(sectionId);
+            const allSections = document.querySelectorAll('.section');
+
+            allSections.forEach(s => {
+                if (s.id === sectionId) {
+                    s.style.display = 'block';
+                } else {
+                    s.style.display = 'none';
+                }
+            });
+        }
+
+        function showDefaultSection() {
+            toggleSectionVisibility(defaultSectionId);
+        }
+
+        // Set the default section on page load
+        showDefaultSection();
+
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const targetSectionId = this.getAttribute('data-target');
+                toggleSectionVisibility(targetSectionId);
             });
         });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>

@@ -76,6 +76,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.model.UserModel</value>
+				<value>com.model.ContactUsMessage</value>
 			</list>
 		</property>
 		</bean>
@@ -87,7 +88,7 @@
 		<!-- mailsender -->
 		 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
         <property name="host" value="smtp.gmail.com" />
-      <!--   <property name="port" value="your_mail_server_port" /> -->
+      <!--   <property name="port" value="your_mail_server_port" /> --> 
         <property name="username" value="hsgroupproject4@gmail.com" />
         <property name="password" value="pscqluajyrjfhszv" />
 

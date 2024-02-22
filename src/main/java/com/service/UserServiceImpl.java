@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.UserDao;
-
+import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.MailModel;
 import com.model.UserModel;
@@ -226,6 +226,43 @@ public List<UserModel> checkRegistration(String email) {
 		
 		
 	}
+	
+
+
+	public String ContData(ContactUsMessage cm) {
+        dao.ContData(cm);
+	 
+		return "Success";
+	}
+    
+
+	public List<ContactUsMessage> getContactUs() {
+		List<ContactUsMessage> List=dao.getContactUs();
+		return List;
+	}
+
+    @Transactional
+
+	public String updateStatus(String messageId) {
+    	System.out.println(messageId);
+		 dao.updateStatus(messageId);
+		 return "success";
+		
+	}
+
+
+	public long delete(long id) {
+		// TODO Auto-generated method stub
+		dao.delete(id);
+		return 0;
+	}
+
+	
+	public void getDeleteMultiple(Long messageId) {
+		// TODO Auto-generated method stub
+		dao.getDeleteMultiple(messageId);
+	}	
+	
 	
 	
 }
