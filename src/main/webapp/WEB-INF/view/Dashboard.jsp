@@ -11,7 +11,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://icons.getbootstrap.com" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -23,39 +23,38 @@
 
 
 <style>
- /* To show Code inside a box */
-     
-     .code-container {
-    position: relative;
-    margin: 20px;
+/* To show Code inside a box */
+.code-container {
+	position: relative;
+	margin: 20px;
 }
 
 .code-textarea {
-            font-family: 'Courier New', monospace;
-            background-color: #2b2b2b; /* Dark background color */
-            color: #ffffff; /* Light text color */
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-            width: 100%;
-            height: 300px; /* Set an appropriate height */
-            resize: none; /* Disable textarea resizing */
-        }
+	font-family: 'Courier New', monospace;
+	background-color: #2b2b2b; /* Dark background color */
+	color: #ffffff; /* Light text color */
+	padding: 10px;
+	border-radius: 5px;
+	overflow-x: auto;
+	width: 100%;
+	height: 300px; /* Set an appropriate height */
+	resize: none; /* Disable textarea resizing */
+}
 
- .copybtn {
-    top: 5px;
-    right: 25px;
-    padding: 5px 10px;
-    cursor: pointer;
+.copybtn {
+	top: 5px;
+	right: 25px;
+	padding: 5px 10px;
+	cursor: pointer;
 }
 
 .capitalize {
-            text-transform: capitalize;
-        }
+	text-transform: capitalize;
+}
 
-.img-container img{
-max-width: 50%;
-    height: auto;
+.img-container img {
+	max-width: 50%;
+	height: auto;
 }
 </style>
 
@@ -75,37 +74,41 @@ max-width: 50%;
 				</div>
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">Spring Course</li>
-					<li class="sidebar-item toggle-btn" data-target="helloSection1"> 
-                                <a href="#" class="sidebar-link">
-                                <i class="fab fa-galactic-republic" style="margin-right: 10px; font-size: 16px">
-                                </i> Introduction of Spring 
-                                </a>
-                            </li>
-                            
+					<li class="sidebar-item toggle-btn" data-target="helloSection1">
+						<a href="#" class="sidebar-link"> <i
+							class="fab fa-galactic-republic"
+							style="margin-right: 10px; font-size: 16px"> </i> Introduction of
+							Spring
+					</a>
+					</li>
+
 					<c:if test="${not empty SidebarTopicName}">
-					    <c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
-					    
-					        <li class="sidebar-item">
-					            <a href="#" class="sidebar-link collapsed capitalize" data-bs-target="#springcore" data-bs-toggle="collapse" aria-expanded="false">
-					                <i class="fab fa-galactic-republic" style="margin-right: 10px; font-size: 16px"></i> ${item.topic_name}
-					            </a>
-					            <ul id="springcore" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-					                <c:if test="${not empty topicList}">
-					                    <c:forEach var="item2" items="${topicList}" varStatus="loop">
-					                        <c:if test="${item.id eq item2.sidebar_topic.id}">
-					                            <li class="sidebar-item">
-					                                <a href="#" class="sidebar-link toggle-btn capitalize" data-target="helloSection${item.id }.${item2.id}">
-					                                    ${item2.subtopic_name}
-					                                </a>
-					                            </li>
-					                        </c:if>
-					                    </c:forEach>
-					                </c:if>
-					            </ul>
-					        </li>
-					    </c:forEach>
-					</c:if>	
-					
+						<c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
+
+							<li class="sidebar-item"><a href="#"
+								class="sidebar-link collapsed capitalize"
+								data-bs-target="#springcore" data-bs-toggle="collapse"
+								aria-expanded="false"> <i class="fab fa-galactic-republic"
+									style="margin-right: 10px; font-size: 16px"></i>
+									${item.topic_name}
+							</a>
+								<ul id="springcore"
+									class="sidebar-dropdown list-unstyled collapse"
+									data-bs-parent="#sidebar">
+									<c:if test="${not empty topicList}">
+										<c:forEach var="item2" items="${topicList}" varStatus="loop">
+											<c:if test="${item.id eq item2.sidebar_topic.id}">
+												<li class="sidebar-item"><a href="#"
+													class="sidebar-link toggle-btn capitalize"
+													data-target="helloSection${item.id }.${item2.id}">
+														${item2.subtopic_name} </a></li>
+											</c:if>
+										</c:forEach>
+									</c:if>
+								</ul></li>
+						</c:forEach>
+					</c:if>
+
 				</ul>
 			</div>
 		</aside>
@@ -363,55 +366,61 @@ max-width: 50%;
 
 
 
-<c:if test="${not empty SidebarTopicName}">
-   <c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
-   
-	<c:forEach var="tm" items="${topicList}">
-	
-	<c:if test="${item.id eq tm.sidebar_topic.id}">
-	
-	 <div class="container-fluid">
-        <section id="helloSection${item.id}.${tm.id}" class="section">
-     
-                    <h1 class="capitalize"><strong><c:out value="${tm.subtopic_name}"/></strong></h1>
-           
-            
-                
-                    <p><c:out value="${tm.intro}"/><br></p>
-                    <br>
-                    
-                    <c:forEach var="fileContent" items="${tm.file_content}">
-                     <c:out value="${fn:length(tm.file_content)}"/>
-                     
-                        <div class="code-container">
-                            <textarea class="code-textarea" readonly>
-                                <c:out value="${fileContent}"/>
-                            </textarea>
-                            <button class="copybtn" onclick="copyToClipboard()">Copy</button>
-                        </div>
-                    </c:forEach>
-                    <br>
+			<c:if test="${not empty SidebarTopicName}">
+				<c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
 
-                    <c:forEach var="imageFile" items="${tm.image_file}">
-   						 <div class="image-container">
-                        <img src="assets/upload01/<c:out value="${imageFile}"/>" alt="Responsive image">
-     				   <!-- Add any additional styling or attributes as needed -->
-					    </div>
+					<c:forEach var="tm" items="${topicList}">
+
+						<c:if test="${item.id eq tm.sidebar_topic.id}">
+
+							<div class="container-fluid">
+								<section id="helloSection${item.id}.${tm.id}" class="section">
+
+									<h1 class="capitalize">
+										<strong><c:out value="${tm.subtopic_name}" /></strong>
+									</h1>
+
+
+
+									<p>
+										<c:out value="${tm.intro}" />
+										<br>
+									</p>
+									<br>
+
+									<c:forEach var="fileContent" items="${tm.file_content}">
+										<c:out value="${fn:length(tm.file_content)}" />
+
+										<div class="code-container">
+											<textarea class="code-textarea" readonly>
+                                <c:out value="${fileContent}" />
+                            </textarea>
+											<button class="copybtn" onclick="copyToClipboard()">Copy</button>
+										</div>
+									</c:forEach>
+									<br>
+
+									<c:forEach var="imageFile" items="${tm.image_file}">
+										<div class="image-container">
+											<img src="assets/upload01/<c:out value="${imageFile}"/>"
+												alt="Responsive image">
+											<!-- Add any additional styling or attributes as needed -->
+										</div>
+									</c:forEach>
+
+
+
+								</section>
+							</div>
+						</c:if>
 					</c:forEach>
 
-               
-           
-        </section>
-    		</div>						        
-			 </c:if> 
-			 </c:forEach>	
-			 					        
-   </c:forEach>
-</c:if>
+				</c:forEach>
+			</c:if>
 
 
 
-										<script>
+			<script>
 				            		    /* to copy text inside textarea */
 				            		    function copyToClipboard() {
 				            	            var codeTextarea = document.querySelector('.code-textarea');
@@ -437,10 +446,10 @@ max-width: 50%;
 				</div>
 			</footer>
 		</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/Dashboard.js"></script>
-	<script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/Dashboard.js"></script>
+		<script>
     document.addEventListener('DOMContentLoaded', function () {
         const toggleButtons = document.querySelectorAll('.toggle-btn');
         const defaultSectionId = 'helloSection1';
@@ -473,7 +482,6 @@ max-width: 50%;
         });
     });
 </script>
-
 </body>
 
 </html>
