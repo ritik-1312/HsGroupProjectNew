@@ -30,7 +30,7 @@ public class AdminController {
 	 @Autowired
 	 UserService userService;
 	
-	 public static String uploadDir="C:\\Hs Group Admin Project\\upload01\\";
+	 public static String uploadDir="C:\\upload1\\";
 	 
 	@RequestMapping(value="gu", method=RequestMethod.GET)
 	 public String getConts(HttpSession session)

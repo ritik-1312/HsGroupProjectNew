@@ -305,7 +305,7 @@ public List<UserModel> checkRegistration(String email) {
 	       {
 			        fileNames1.add(uploadFile.getOriginalFilename());
 			        // Upload each file in the list
-			        String filePath = "C:\\Hs Group Admin Project\\upload01";
+			        String filePath = "C:\\upload1";
 			        try 
 			        {
 			            byte barr[] = uploadFile.getBytes();
@@ -328,7 +328,7 @@ public List<UserModel> checkRegistration(String email) {
 	    {
 		        fileNames.add(uploadFile.getOriginalFilename());
 		        // Upload each file in the list
-		        String filePath2 = "C:\\Hs Group Admin Project\\upload01";
+		        String filePath2 = "C:\\upload1";
 		        try 
 		        {
 		            byte barr[] = uploadFile.getBytes();

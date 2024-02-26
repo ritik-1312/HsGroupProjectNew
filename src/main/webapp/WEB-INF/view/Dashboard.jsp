@@ -362,11 +362,7 @@
 						<div class="card border-0"></div>
 					</section>
 				</div>
-			</main>
-
-
-
-			<c:if test="${not empty SidebarTopicName}">
+				<c:if test="${not empty SidebarTopicName}">
 				<c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
 
 					<c:forEach var="tm" items="${topicList}">
@@ -417,6 +413,61 @@
 
 				</c:forEach>
 			</c:if>
+			</main>
+
+
+
+			<%-- <c:if test="${not empty SidebarTopicName}">
+				<c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
+
+					<c:forEach var="tm" items="${topicList}">
+
+						<c:if test="${item.id eq tm.sidebar_topic.id}">
+
+							<div class="container-fluid">
+								<section id="helloSection${item.id}.${tm.id}" class="section">
+
+									<h1 class="capitalize">
+										<strong><c:out value="${tm.subtopic_name}" /></strong>
+									</h1>
+
+
+
+									<p>
+										<c:out value="${tm.intro}" />
+										<br>
+									</p>
+									<br>
+
+									<c:forEach var="fileContent" items="${tm.file_content}">
+										<c:out value="${fn:length(tm.file_content)}" />
+
+										<div class="code-container">
+											<textarea class="code-textarea" readonly>
+                                <c:out value="${fileContent}" />
+                            </textarea>
+											<button class="copybtn" onclick="copyToClipboard()">Copy</button>
+										</div>
+									</c:forEach>
+									<br>
+
+									<c:forEach var="imageFile" items="${tm.image_file}">
+										<div class="image-container">
+											<img src="assets/upload01/<c:out value="${imageFile}"/>"
+												alt="Responsive image">
+											<!-- Add any additional styling or attributes as needed -->
+										</div>
+									</c:forEach>
+
+
+
+								</section>
+							</div>
+						</c:if>
+					</c:forEach>
+
+				</c:forEach>
+			</c:if> --%>
 
 
 
