@@ -1,5 +1,8 @@
 package com.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,11 +14,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.dao.UserDao;
+import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.MailModel;
+import com.model.Outputfile;
+import com.model.SidebarTopic;
+import com.model.SubTopic;
 import com.model.UserModel;
 
 import jakarta.mail.MessagingException;
@@ -261,6 +269,106 @@ public List<UserModel> checkRegistration(String email) {
 	public void getDeleteMultiple(Long messageId) {
 		// TODO Auto-generated method stub
 		dao.getDeleteMultiple(messageId);
+	}
+
+	@Transactional
+	public List<SidebarTopic> getSideTopic() {
+		// TODO Auto-generated method stub
+		return dao.getSideTopic();
+	}
+	
+	@Transactional
+	public void saveSidebar(SidebarTopic topic) {
+		// TODO Auto-generated method stub
+		dao.saveSidebar(topic);
+	}
+
+	@Transactional
+	public SidebarTopic findTopicId(long id) {
+		// TODO Auto-generated method stub
+		return dao.findTopicId(id);
+	}
+
+	@Transactional
+	public void saveSubTopicWithFile(SubTopic topic2) {
+		// TODO Auto-generated method stub
+		dao.saveSubTopicWithFile(topic2);
+	}
+
+	public void uploadFile(List<CommonsMultipartFile> uploadfiles, List<CommonsMultipartFile> outputfile) 
+	{
+		// TODO Auto-generated method stub
+				List<CommonsMultipartFile> file =outputfile;
+				
+			    List<String> fileNames1 = new ArrayList<String>();
+		   for (CommonsMultipartFile uploadFile : file) 
+	       {
+			        fileNames1.add(uploadFile.getOriginalFilename());
+			        // Upload each file in the list
+			        String filePath = "C:\\Hs Group Admin Project\\upload01";
+			        try 
+			        {
+			            byte barr[] = uploadFile.getBytes();
+			            BufferedOutputStream bout = new BufferedOutputStream(
+			                    new FileOutputStream(filePath + "\\" + uploadFile.getOriginalFilename()));
+			            bout.write(barr);
+			            bout.flush();
+			            bout.close();
+			        } catch (Exception e) 
+			        {
+			            System.out.println(e);
+			        }
+			
+			}
+			
+			// List of uploaded files
+		    List<CommonsMultipartFile> file2 = uploadfiles;
+		    List<String> fileNames = new ArrayList<String>();
+	    for (CommonsMultipartFile uploadFile : file2) 
+	    {
+		        fileNames.add(uploadFile.getOriginalFilename());
+		        // Upload each file in the list
+		        String filePath2 = "C:\\Hs Group Admin Project\\upload01";
+		        try 
+		        {
+		            byte barr[] = uploadFile.getBytes();
+		            BufferedOutputStream bout = new BufferedOutputStream(
+		                    new FileOutputStream(filePath2 + "\\" + uploadFile.getOriginalFilename()));
+		            bout.write(barr);
+		            bout.flush();
+		            bout.close();
+		        } catch (Exception e) 
+		        {
+		            System.out.println(e);
+		        }
+		}
+		
+		    // Now you have a list of file names that you can use for uploading files later
+		    System.out.println("File names in the list:");
+		    for (String fileName : fileNames) 
+		    {
+		        System.out.println(fileName);
+		    }
+	}
+
+	@Transactional
+	public List<SubTopic> getSubTopicList() {
+		// TODO Auto-generated method stub
+		return  dao.getSubTopicList();
+	}
+
+	@Transactional
+	@Override
+	public List<CodeFile> getFilesBySubTopicId(Long subtopicId) {
+		// TODO Auto-generated method stub
+		return dao.getFilesBySubTopicId(subtopicId);
+	}
+
+	@Transactional
+	@Override
+	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId) {
+		// TODO Auto-generated method stub
+		return dao.getOutputFilesBySubTopicId(subtopicId);
 	}	
 	
 	

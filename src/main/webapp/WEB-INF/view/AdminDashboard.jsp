@@ -457,9 +457,8 @@ $(document).ready(function(){
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Subtopic
-																			Name</label> <input type="text" name="subtopic_name"
-																			class="form-control form-control-lg"
-																			style="width: 40vh;" />
+																			Name</label> 
+													<input type="text" name="subtopic_name" class="form-control form-control-lg" style="width: 40vh;" />
 																	</div>
 																</div>
 															</div>

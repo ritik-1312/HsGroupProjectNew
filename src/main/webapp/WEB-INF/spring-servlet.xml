@@ -56,6 +56,10 @@
 
 	</bean>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
+ 
+	
+	
 	<!--  for hibernate  -->
      <tx:annotation-driven transaction-manager="hibernateTransactionManager" />
 
@@ -77,6 +81,10 @@
 			<list>
 				<value>com.model.UserModel</value>
 				<value>com.model.ContactUsMessage</value>
+				<value>com.model.CodeFile</value>
+				<value>com.model.SidebarTopic</value>
+				<value>com.model.SubTopic</value>
+				<value>com.model.Outputfile</value>
 			</list>
 		</property>
 		</bean>

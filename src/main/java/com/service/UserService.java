@@ -2,8 +2,14 @@ package com.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
+import com.model.Outputfile;
+import com.model.SidebarTopic;
+import com.model.SubTopic;
 import com.model.UserModel;
 
 import jakarta.mail.MessagingException;
@@ -24,5 +30,14 @@ public interface UserService {
 	 public String updateStatus(String messageId);
 	public long delete(long id);
 	public void getDeleteMultiple(Long messageId);
+	
+	public List<SidebarTopic> getSideTopic();
+	public void saveSidebar(SidebarTopic topic);
+	public SidebarTopic findTopicId(long id);
+	public void saveSubTopicWithFile(SubTopic topic2);
+	public void uploadFile(List<CommonsMultipartFile> uploadfiles, List<CommonsMultipartFile> outputfile);
+	public List<SubTopic> getSubTopicList();
+	public List<CodeFile> getFilesBySubTopicId(Long subtopicId);
+	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId);
 	
 }
