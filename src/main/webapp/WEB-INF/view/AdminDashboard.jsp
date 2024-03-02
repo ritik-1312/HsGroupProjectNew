@@ -21,9 +21,28 @@
 <link rel="stylesheet" href="assets/css/adamindash.css">
 <link rel="stylesheet" href="assets/css/contactus.css">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
+
+<c:set var="sesexist" value="${sesexist }"></c:set>
+<c:choose>
+  <c:when test="${sesexist == 'sidebarfail'}">
+    <script>
+      Swal.fire({
+    	  icon: 'error',
+    	  title: 'Opps!!!',
+    	  text: 'This topic is already exist'
+      }).then(function() {
+        // Remove the session variable after the pop-up is closed
+        <c:remove scope="session" var="sesexist" />;
+      });
+    </script>
+  </c:when>
+</c:choose>
+
 	<div class="wrapper">
 		<aside id="sidebar" class="js-sidebar">
 			<!-- Content For Sidebar -->

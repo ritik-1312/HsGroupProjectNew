@@ -239,6 +239,23 @@ public class UserDaoimpl implements UserDao {
 	            .getResultList();
 
 	    return outputFile;
+	}
+
+	
+	@Transactional
+	@Override
+	public List<SidebarTopic> checkSideTopic(String topic_name) {
+		// TODO Auto-generated method stub
+		String hql = "FROM SidebarTopic WHERE topic_name = :topic_name";
+	    
+	    Query<SidebarTopic> query = sessionFactory.getCurrentSession().createQuery(hql, SidebarTopic.class);
+	    query.setParameter("topic_name", topic_name);
+	    List<SidebarTopic> result = query.getResultList();
+
+	    // Log statement to check the result
+	    System.out.println("Result: " + result);
+
+	    return result.isEmpty() ? null : result;
 	}    
     
     

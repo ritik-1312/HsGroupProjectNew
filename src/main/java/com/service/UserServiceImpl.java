@@ -305,7 +305,7 @@ public List<UserModel> checkRegistration(String email) {
 	       {
 			        fileNames1.add(uploadFile.getOriginalFilename());
 			        // Upload each file in the list
-			        String filePath = "C:\\upload1";
+			        String filePath = "C:\\upload";
 			        try 
 			        {
 			            byte barr[] = uploadFile.getBytes();
@@ -328,7 +328,7 @@ public List<UserModel> checkRegistration(String email) {
 	    {
 		        fileNames.add(uploadFile.getOriginalFilename());
 		        // Upload each file in the list
-		        String filePath2 = "C:\\upload1";
+		        String filePath2 = "/ProjectHibernateWebArtifi/src/main/webapp/assets/upload";
 		        try 
 		        {
 		            byte barr[] = uploadFile.getBytes();
@@ -369,6 +369,12 @@ public List<UserModel> checkRegistration(String email) {
 	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId) {
 		// TODO Auto-generated method stub
 		return dao.getOutputFilesBySubTopicId(subtopicId);
+	}
+
+	@Override
+	public List<SidebarTopic> checkSideTopic(String topic_name) {
+		// TODO Auto-generated method stub
+		return dao.checkSideTopic(topic_name);
 	}	
 	
 	

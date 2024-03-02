@@ -36,9 +36,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main/webapp/assets/upload1</name>
+			<name>src/main/webapp/assets/upload</name>
 			<type>2</type>
-			<location>C:/upload1</location>
+			<location>C:/upload</location>
 		</link>
 	</linkedResources>
 </projectDescription>

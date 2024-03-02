@@ -40,4 +40,6 @@ public interface UserService {
 	public List<CodeFile> getFilesBySubTopicId(Long subtopicId);
 	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId);
 	
+	public List<SidebarTopic> checkSideTopic(String topic_name);
+	
 }

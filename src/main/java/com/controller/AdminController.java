@@ -30,7 +30,7 @@ public class AdminController {
 	 @Autowired
 	 UserService userService;
 	
-	 public static String uploadDir="C:\\upload1\\";
+	 public static String uploadDir="C:\\upload\\";
 	 
 	@RequestMapping(value="gu", method=RequestMethod.GET)
 	 public String getConts(HttpSession session)
@@ -112,15 +112,26 @@ public class AdminController {
 	  }
 	 
 	 @RequestMapping(value = "save_sidebar")
-	 public String saveSideBar(@RequestParam("topic_name") String topic_name, Model model) 
+	 public String saveSideBar(@RequestParam("topic_name") String topic_name, Model model, HttpSession session) 
 	  {
-			SidebarTopic topic = new SidebarTopic();
-
-			topic.setTopic_name(topic_name);
-
-			userService.saveSidebar(topic);
+		 
+		 List<SidebarTopic> list = userService.checkSideTopic(topic_name);
 			
-			return "redirect:/viewDashboard";
+			if (list!=null) {
+			
+				session.setAttribute("sesexist", "sidebarfail");
+		  		return "redirect:/viewDashboard";
+			}
+			else {
+				SidebarTopic topic = new SidebarTopic();
+				
+				topic.setTopic_name(topic_name);
+	
+				userService.saveSidebar(topic);
+				
+				return "redirect:/viewDashboard";
+		  		
+			}
 	  }
 	 
 	 
@@ -146,7 +157,7 @@ public class AdminController {
 						{
 							CodeFile codeFile = new CodeFile();
 			
-							codeFile.setUploadFile( uploadDir+file.getOriginalFilename());
+							codeFile.setUploadFile( /* uploadDir+ */file.getOriginalFilename());
 							// codeFile.setUploadiles(file);
 							 codeFile.setSub_topic(topic2);
 							codeFiles.add(codeFile);

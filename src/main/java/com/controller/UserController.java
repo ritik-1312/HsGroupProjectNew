@@ -34,6 +34,8 @@ public class UserController {
  @Autowired
  UserService userService;
  
+ public static String uploadDir="C:\\upload\\";
+ 
 	@RequestMapping(value ="save", method = RequestMethod.POST)
 	public String saveData(@ModelAttribute("um") UserModel um, HttpSession session, @RequestParam("email")String email) throws MessagingException {
 		// email checking
@@ -147,7 +149,7 @@ public class UserController {
 									             System.out.println("UploadFile for Topic " + subtopic1.getSubtopic_name() + ": " + uploadFile);
 
 									             try {
-									            	 FileReader r = new FileReader(uploadFile);         // Reading the content of the file and saving it to the file_content property of the Topic object
+									            	 FileReader r = new FileReader(uploadDir+uploadFile);         // Reading the content of the file and saving it to the file_content property of the Topic object
 									            	 try 
 									            	 {
 									            		 StringBuilder stringbuild = new StringBuilder();
