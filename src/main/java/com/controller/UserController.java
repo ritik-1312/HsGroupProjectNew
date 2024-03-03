@@ -133,51 +133,16 @@ public class UserController {
 	 @RequestMapping("/viewCourses")
 		public String viewCourses(HttpSession session)
 		{
-			List<SubTopic> list = userService.getSubTopicList();		//Retrieves a list of Topic class objects from the topic table,* @return List of Topic objects representing records in the topic table.		
+			List<SubTopic> list = userService.getSubTopicList();		//Retrieves a list of SubTopic class objects from the subtopic table,* @return List of SubTopic objects representing records in the subtopic table.		
 			
 			 for (SubTopic subtopic1 : list)
 			 {     
 										 	Long subtopicId = subtopic1.getId();
-										 	
-										 	 List<String> fileContentList = new ArrayList<>();    // to save readed file and set it in file_content setter
+										 	 // Retrieves a list of CodeFile objects associated with a specific subTopic ID.
+										 	 List<CodeFile> codeFiles = userService.getFilesBySubTopicId(subtopicId);    
 										 	 
-									        List<CodeFile> codeFiles = userService.getFilesBySubTopicId(subtopicId);     // Retrieves a list of CodeFile objects associated with a specific subTopic ID.
-									        for (CodeFile codeFile : codeFiles) 
-									        {
-									        	 String uploadFile = codeFile.getUploadFile();
-
-									             System.out.println("UploadFile for Topic " + subtopic1.getSubtopic_name() + ": " + uploadFile);
-
-									             try {
-									            	 FileReader r = new FileReader(uploadDir+uploadFile);         // Reading the content of the file and saving it to the file_content property of the Topic object
-									            	 try 
-									            	 {
-									            		 StringBuilder stringbuild = new StringBuilder();
-									            		 int i ;
-									 
-									            		 while ((i = r.read()) != -1) {
-									            		     //System.out.print((char)i);
-									            		     stringbuild.append((char) i);
-									            		 }
-
-									            		 // Add the content to the list
-									            		 fileContentList.add(stringbuild.toString());
-									            		 //System.out.println("________________________________________");
-									            	 }finally 
-									            	 {
-									            		 r.close();
-									            	 }
-									            	 
-									             }catch(IOException e)
-									             {
-									            	 System.out.println("Exception Handled : "+e);
-									             }
-									             
-									        }
-									        
-									     
-						            		 subtopic1.setFile_content(fileContentList);
-											
+										 	// FileReader Reading all codefiles and setting file_content and file_name in   subtopic1 Object.
+										 	userService.FileReaderForCodeFiles(subtopic1,codeFiles,uploadDir);   
 											
 											
 											  String intro = subtopic1.getIntro(); 

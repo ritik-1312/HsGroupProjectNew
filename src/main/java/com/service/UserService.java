@@ -41,5 +41,6 @@ public interface UserService {
 	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId);
 	
 	public List<SidebarTopic> checkSideTopic(String topic_name);
+	public void FileReaderForCodeFiles(SubTopic subtopic1, List<CodeFile> codeFiles, String uploadDir);
 	
 }

@@ -2,6 +2,8 @@ package com.service;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -375,6 +377,51 @@ public List<UserModel> checkRegistration(String email) {
 	public List<SidebarTopic> checkSideTopic(String topic_name) {
 		// TODO Auto-generated method stub
 		return dao.checkSideTopic(topic_name);
+	}
+
+	@Override
+	public void FileReaderForCodeFiles(SubTopic subtopic1, List<CodeFile> codeFiles, String uploadDir) {
+		// TODO Auto-generated method stub
+		 List<String> fileContentList = new ArrayList<>();    // to save readed file and set it in file_content setter
+	        List<String> fileNames = new ArrayList<>();     //to save file name list which is named uploadFile here.
+	        
+	        for (CodeFile codeFile : codeFiles) 
+	        {
+	        	 String uploadFile = codeFile.getUploadFile();
+
+	             System.out.println("UploadFile for Topic " + subtopic1.getSubtopic_name() + ": " + uploadFile);
+	             fileNames.add(uploadFile);
+
+	             try {
+	            	 FileReader r = new FileReader(uploadDir+uploadFile);         // Reading the content of the file and saving it to the file_content property of the Topic object
+	            	 try 
+	            	 {
+	            		 StringBuilder stringbuild = new StringBuilder();
+	            		 int i ;
+	 
+	            		 while ((i = r.read()) != -1) {
+	            		     //System.out.print((char)i);
+	            		     stringbuild.append((char) i);
+	            		 }
+
+	            		 // Add the content to the list
+	            		 fileContentList.add(stringbuild.toString());
+	            		 //System.out.println("________________________________________");
+	            	 }finally 
+	            	 {
+	            		 r.close();
+	            	 }
+	            	 
+	             }catch(IOException e)
+	             {
+	            	 System.out.println("Exception Handled : "+e);
+	             }
+	             
+	        }
+	        
+	         subtopic1.setFile_name(fileNames);
+ 		 subtopic1.setFile_content(fileContentList);
+			
 	}	
 	
 	

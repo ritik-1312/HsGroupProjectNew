@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <%@ page isELIgnored="false"%>
@@ -84,17 +83,18 @@
 						<c:forEach var="item" items="${SidebarTopicName}" varStatus="loop">
 
 							<li class="sidebar-item"><a href="#"
-								class="sidebar-link collapsed " data-bs-target="#springcore"
+								class="sidebar-link collapsed " data-bs-target="#springcore-${loop.index}"
 								data-bs-toggle="collapse" aria-expanded="false"> <i
 									class="fab fa-galactic-republic"
 									style="margin-right: 10px; font-size: 16px"></i>
 									${item.topic_name}
 							</a>
-								<ul id="springcore"
+								<ul id="springcore-${loop.index}"
 									class="sidebar-dropdown list-unstyled collapse"
 									data-bs-parent="#sidebar">
+									
 									<c:if test="${not empty topicList}">
-										<c:forEach var="item2" items="${topicList}" varStatus="loop">
+										<c:forEach var="item2" items="${topicList}" varStatus="loopy">
 											<c:if test="${item.id eq item2.sidebar_topic.id}">
 												<li class="sidebar-item"><a href="#"
 													class="sidebar-link toggle-btn "
@@ -382,33 +382,39 @@
 										</p>
 										<br>
 										<h1 class="capitalize">Examples</h1>
-										<c:forEach var="fileContent" items="${tm.file_content}">
+										<c:forEach var="fileContent" items="${tm.file_content}" varStatus="loopx">
 											<%-- <c:out value="${(tm.Upload_File)}" /> --%>
-
+											<c:set var = "textindex" value="${item.id}${tm.id}${loopx.index}"/>
+																							
 											<div class="code-container">
-												<textarea class="code-textarea" readonly>
-                                <c:out value="${fileContent}" />
-                            </textarea>
-												<button class="copy" onclick="copyToClipboard()">
-												  <span data-text-end="Copied!" data-text-initial="Copy to clipboard" class="tooltip"></span>
-												  <span>
-												    <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 6.35 6.35" y="0" x="0" height="20" width="20" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" class="clipboard">
-												      <g>
-												        <path fill="currentColor" d="M2.43.265c-.3 0-.548.236-.573.53h-.328a.74.74 0 0 0-.735.734v3.822a.74.74 0 0 0 .735.734H4.82a.74.74 0 0 0 .735-.734V1.529a.74.74 0 0 0-.735-.735h-.328a.58.58 0 0 0-.573-.53zm0 .529h1.49c.032 0 .049.017.049.049v.431c0 .032-.017.049-.049.049H2.43c-.032 0-.05-.017-.05-.049V.843c0-.032.018-.05.05-.05zm-.901.53h.328c.026.292.274.528.573.528h1.49a.58.58 0 0 0 .573-.529h.328a.2.2 0 0 1 .206.206v3.822a.2.2 0 0 1-.206.205H1.53a.2.2 0 0 1-.206-.205V1.529a.2.2 0 0 1 .206-.206z"></path>
-												      </g>
-												    </svg>
-												    <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 24 24" y="0" x="0" height="18" width="18" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" class="checkmark">
-												      <g>
-												        <path data-original="#000000" fill="currentColor" d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"></path>
-												      </g>
-												    </svg>
-												  </span>
+												<h4><c:out value="${tm.file_name[loopx.index]}" /></h4>
+											
+												<textarea class="code-textarea forcopybtn-${textindex}" readonly>
+                             						   <c:out value="${fileContent}" />
+                         					m   </textarea>
+                         					
+												<button class="copy" onclick="copyToClipboard('${textindex}')">
+													  <span data-text-end="Copied!" data-text-initial="Copy to clipboard" class="tooltip"></span>
+													  <span>
+													    <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 6.35 6.35" y="0" x="0" height="20" width="20" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" class="clipboard">
+													      <g>
+													        <path fill="currentColor" d="M2.43.265c-.3 0-.548.236-.573.53h-.328a.74.74 0 0 0-.735.734v3.822a.74.74 0 0 0 .735.734H4.82a.74.74 0 0 0 .735-.734V1.529a.74.74 0 0 0-.735-.735h-.328a.58.58 0 0 0-.573-.53zm0 .529h1.49c.032 0 .049.017.049.049v.431c0 .032-.017.049-.049.049H2.43c-.032 0-.05-.017-.05-.049V.843c0-.032.018-.05.05-.05zm-.901.53h.328c.026.292.274.528.573.528h1.49a.58.58 0 0 0 .573-.529h.328a.2.2 0 0 1 .206.206v3.822a.2.2 0 0 1-.206.205H1.53a.2.2 0 0 1-.206-.205V1.529a.2.2 0 0 1 .206-.206z"></path>
+													      </g>
+													    </svg>
+													    <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 24 24" y="0" x="0" height="18" width="18" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" class="checkmark">
+													      <g>
+													        <path data-original="#000000" fill="currentColor" d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"></path>
+													      </g>
+													    </svg>
+													  </span>
 												</button>
 											</div>
 										</c:forEach>
+										
 										<br>
 										<h1 class="capitalize">Output Images</h1>
 										<br>
+										
 										<c:forEach var="imageFile" items="${tm.image_file}">
 											<div class="image-container">
 												<img src="assets/upload/<c:out value="${imageFile}"/>"
@@ -484,13 +490,13 @@
 
 
 
-			<script>
+										<script>
 				            		    /* to copy text inside textarea */
-				            		    function copyToClipboard() {
-				            	            var codeTextarea = document.querySelector('.code-textarea');
-				            	           /*  codeTextarea.select(); */
+				            		    function copyToClipboard(textindex) {
+				            	            var codeTextarea = document.querySelector('.forcopybtn-' + textindex);
+				            	            codeTextarea.select();
 				            	            document.execCommand('copy');
-				            	            /* alert('Code copied to clipboard!'); */
+				            	            alert('Code copied to clipboard!');
 				            	        }	
 				            		    
 										</script>

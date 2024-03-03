@@ -39,11 +39,21 @@ public class SubTopic {
 	@Transient
 	private List<String> file_content;   //to save read file content 
 
-	
 	@Transient 
 	private List<String> image_file;		// to save image name 
 	 
+	@Transient 
+	private List<String> file_name;		// to save File name
 
+	
+	
+	public List<String> getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(List<String> file_name) {
+		this.file_name = file_name;
+	}
 
 	public List<String> getImage_file() {
 		return image_file;
