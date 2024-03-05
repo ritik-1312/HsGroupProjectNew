@@ -61,23 +61,24 @@ public class UserController {
 	
 	
 	 @RequestMapping(value = "cu", method = RequestMethod.POST)
-	    public String checkAndUpdateStatus(Model model, @RequestParam ("otp")int otp) 
-	        {
+	    public String checkAndUpdateStatus(Model model, @RequestParam ("otp")int otp, HttpSession session) 
+	  {
 		 String result = userService.checkAndSetStatus(otp);
 
 		    if ("Login".equals(result)) {
+		    	session.setAttribute("seslog", "success");
 		         return "Login"; 
 		    } 
 		    else if ("regotp".equals(result)) {
 		        // Handle the case where the OTP is incorrect
-		        model.addAttribute("error", "ssfdgfdg");
+		    	session.setAttribute("error", "fail");
+		        //model.addAttribute("error", "ssfdgfdg");
 		        return "regotp";
 		          /*
 				 * userService.checkAndSetStatus(otp); return "Login";
 				 */
                 }return "success";
 	        }
-	 
 	 
 	 
 	 @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -91,7 +92,7 @@ public class UserController {
 		    if (l != null && !l.isEmpty()) {
 		        // Redirect to the dashboard or any other URL
 		    	session.setAttribute("sesemail", um.getEmail());
-		        return "redirect:/viewCourses"; 
+		        return "redirect:/Dashboard"; 
 		    } else {
 		        // Return an indication of failure
 		    	session.setAttribute("sesfail", "fail");
@@ -115,12 +116,21 @@ public class UserController {
 	 
 	 //cus = to sending password form otp page
 	 @RequestMapping(value = "cus", method = RequestMethod.POST)
-	    public String CheckotpandSendpasswor (Model model, @RequestParam ("otp")int otp) throws MessagingException 
+	    public String CheckotpandSendpasswor (Model model, @RequestParam ("otp")int otp, HttpSession session) throws MessagingException 
 	        {
-		 userService.cecksendPassword(otp);
-
-		   return "pswotp";
-	        }
+		 String Status= userService.cecksendPassword(otp);
+         if ("Login".equals(Status)) {
+       	  session.setAttribute("sespass", "success");
+       	  
+	   return "Login";
+         }
+         else if("pswotp".equals(Status)) {
+       	  session.setAttribute("sesfail", "fail");
+       	  return "pswotp";
+         }
+         return "success";
+       }
+	        
 	 @RequestMapping(value="login1", method= RequestMethod.POST)
 	 public String ContactUs(@ModelAttribute("cm") ContactUsMessage cm, HttpSession session) {
 		 
@@ -172,9 +182,59 @@ public class UserController {
 				  session.setAttribute("SidebarTopicName", sidebartopic);
 				 
 			 
-			return "Dashboard";
+			return "redirect:/Dashboard";
 		}
 	 
+	 @RequestMapping("Dashboard")
+	 public String str(HttpSession session) {
+		 if (session.getAttribute("sesemail") == null) {
+	            // User is not authenticated, redirect to login page with an error message
+	           // model.addAttribute("errorMessage", "Please login to access the Dashboard.");
+	            return "redirect:/login";
+	        }else {
+	        	List<SubTopic> list = userService.getSubTopicList();		//Retrieves a list of SubTopic class objects from the subtopic table,* @return List of SubTopic objects representing records in the subtopic table.		
+				
+				 for (SubTopic subtopic1 : list)
+				 {     
+											 	Long subtopicId = subtopic1.getId();
+											 	 // Retrieves a list of CodeFile objects associated with a specific subTopic ID.
+											 	 List<CodeFile> codeFiles = userService.getFilesBySubTopicId(subtopicId);    
+											 	 
+											 	// FileReader Reading all codefiles and setting file_content and file_name in   subtopic1 Object.
+											 	userService.FileReaderForCodeFiles(subtopic1,codeFiles,uploadDir);   
+												
+												
+												  String intro = subtopic1.getIntro(); 
+												  String subtopic = subtopic1.getSubtopic_name();
+												  List<Outputfile> OutputFile1 = userService.getOutputFilesBySubTopicId(subtopicId);     // Retrieves a list of OutputFile objects associated with a specific subTopic ID.
+												  List<String> outputImages = new ArrayList<>();   
+												  for (Outputfile outfile : OutputFile1) 
+											        {
+													  String outputimg  = outfile.getOutputFile();
+													  outputImages.add(outputimg);
+													  System.out.println("output image: "+outputimg);
+											        }
+												  subtopic1.setImage_file(outputImages);
+												  System.out.println("Topic Name : "+subtopic);
+												  System.out.println("Topic Intro :"+intro);
+												   System.out.println("");
+												 
+				    }
+				
+				 session.setAttribute("topicList", list);
+				 
+					  List<SidebarTopic> sidebartopic = userService.getSideTopic();
+					  for (SidebarTopic sidelist : sidebartopic)
+						 {    
+					  System.out.println("Topic Name : "+sidelist.getTopic_name());
+						 }
+					  session.setAttribute("SidebarTopicName", sidebartopic);
+					 
+				 
+	        	
+			return "Dashboard";
+	        }
+	 }
 }
 
 	 

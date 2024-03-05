@@ -320,12 +320,12 @@ td {
 }
 
 tr:hover td {
-  transform: scale(0.9); /* Zoom out effect on hover for all td elements */
+  transform: scale(1.2); /* Zoom out effect on hover for all td elements */
 }
 
 /* Change color of message td on hover */
 tr:hover td.me {
-  color: #fffe00 /* Change color of .me class when any td in the row is hovered */
+  color: green; /* Change color of .me class when any td in the row is hovered */
 }
 
 /* no data found css */

@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="robots" content="noindex, nofollow">
     
 
@@ -229,7 +233,27 @@ body {
 </head>
 <body class="_widget-auto-layout">
 <br> <br> <br> 
+
+
+
     
+  
+   <c:set var="sesfail" value="${sesfail}" />
+   <c:choose>
+
+    <c:when test="${sesfail == 'fail'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "OTP Verification Failed!",
+                text: "The entered OTP did not match. Please double-check and try again.",
+                icon: "error",
+            });
+        </script>
+    </c:when>
+</c:choose>
+<c:remove scope="session" var="sesfail" />
+ 
+ 
         
         <main class="_widget login-id">
   <section class="c70d410b8 _prompt-box-outer ce25df4c4">
@@ -240,7 +264,7 @@ body {
         <header class="c194aa624 ce8ab6053">
           <div title="OpenAI" id="custom-prompt-logo" style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important"></div>
         
-<i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"�></i>
+<i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"ï¿½></i>
           <!-- REPLACE WITH pswotp -->
             <h1 class="c751d88a6 cefd29ea5">OTP Verification</h1>
           <br> 

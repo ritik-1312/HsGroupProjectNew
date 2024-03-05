@@ -186,9 +186,10 @@ public List<UserModel> checkRegistration(String email) {
 	
 	public String cecksendPassword(int otp) throws MessagingException {
 		
-		  UserModel user = dao.getPasswordByOtp(otp);
-
-	        if (user != null) {
+		 UserModel user = dao.getPasswordByOtp(otp);
+		  if(user!=null) {
+              int r= user.getOtp();
+	        if (user != null&& r==otp) {
 	            // If the user is found, you can access both password and email
 	            String password = user.getPassword();
 	            String email = user.getEmail();
@@ -227,15 +228,18 @@ public List<UserModel> checkRegistration(String email) {
 	            
 	            
 	            
-	            return "Password and email retrieved successfully.";
-	        } else {
+	            return "Login";
+	        }} else {
 	            // If the OTP doesn't exist, return an error message or handle it accordingly
-	            return "Invalid OTP. Please try again.";
+	            return "pswotp";
 	        }
-		
+		return null;
 		
 		
 	}
+		
+		
+	
 	
 
 
@@ -307,7 +311,9 @@ public List<UserModel> checkRegistration(String email) {
 	       {
 			        fileNames1.add(uploadFile.getOriginalFilename());
 			        // Upload each file in the list
-			        String filePath = "C:\\upload";
+			        String filePath = "C:\\upload\\";
+			        System.out.println("Absolute Path: " + filePath + uploadFile.getOriginalFilename());
+
 			        try 
 			        {
 			            byte barr[] = uploadFile.getBytes();
@@ -318,7 +324,7 @@ public List<UserModel> checkRegistration(String email) {
 			            bout.close();
 			        } catch (Exception e) 
 			        {
-			            System.out.println(e);
+			             e.printStackTrace();
 			        }
 			
 			}
@@ -326,22 +332,24 @@ public List<UserModel> checkRegistration(String email) {
 			// List of uploaded files
 		    List<CommonsMultipartFile> file2 = uploadfiles;
 		    List<String> fileNames = new ArrayList<String>();
-	    for (CommonsMultipartFile uploadFile : file2) 
+		    
+	    for (CommonsMultipartFile uploadFiles : file2) 
 	    {
-		        fileNames.add(uploadFile.getOriginalFilename());
+		        fileNames.add(uploadFiles.getOriginalFilename());
 		        // Upload each file in the list
-		        String filePath2 = "/ProjectHibernateWebArtifi/src/main/webapp/assets/upload";
+		       
+		        String filePath2 = "C:\\upload\\";
 		        try 
 		        {
-		            byte barr[] = uploadFile.getBytes();
+		            byte barr[] = uploadFiles.getBytes();
 		            BufferedOutputStream bout = new BufferedOutputStream(
-		                    new FileOutputStream(filePath2 + "\\" + uploadFile.getOriginalFilename()));
+		                    new FileOutputStream(filePath2 + "\\" + uploadFiles.getOriginalFilename()));
 		            bout.write(barr);
 		            bout.flush();
 		            bout.close();
 		        } catch (Exception e) 
 		        {
-		            System.out.println(e);
+		           e.printStackTrace();
 		        }
 		}
 		

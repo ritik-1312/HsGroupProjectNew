@@ -5,11 +5,11 @@
    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <meta name="robots" content="noindex, nofollow">
-    
-
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
     <style id="custom-styles-container">
      
         
@@ -228,6 +228,40 @@ body {
 </style>
 </head>
 <body class="_widget-auto-layout">
+<c:set var="sesreg" value="${sesreg}" />
+
+<c:choose>
+    <c:when test="${sesreg == 'success'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "OTP Sent Successfully!",
+                text: "Check your email, please.",
+                icon: "success",
+            });
+        </script>
+    </c:when>
+</c:choose>
+
+<c:remove scope="session" var="sesreg" />
+
+
+
+<c:set var="error" value="${error}" />
+<c:choose>
+    <c:when test="${error == 'fail'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "OTP Verification Failed!",
+                text: "The entered OTP did not match. Please double-check and try again.",
+                icon: "error",
+            });
+        </script>
+    </c:when>
+</c:choose>
+
+<c:remove scope="session" var="error" />
+
+      
 <br> <br> <br> 
     
         
@@ -240,7 +274,7 @@ body {
         <header class="c194aa624 ce8ab6053">
           <div title="OpenAI" id="custom-prompt-logo" style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important"></div>
         
-<i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"�></i>
+<i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"ï¿½></i>
           <!-- REPLACE WITH pswotp -->
             <h1 class="c751d88a6 cefd29ea5">OTP Verification</h1>
           <br> 

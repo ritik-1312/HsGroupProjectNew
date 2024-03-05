@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="robots" content="noindex, nofollow">
     
 
@@ -228,8 +230,42 @@ body {
 </style>
 </head>
 <body class="_widget-auto-layout">
+
 <br> <br> <br> 
     <div class="oai-wrapper">
+    
+    <c:set var="seslog" value="${seslog}" />
+
+<c:choose>
+    <c:when test="${seslog == 'success'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "Registration Successful!",
+                text: "Your OTP has been verified. Registration is now complete.",
+                icon: "success",
+            });
+        </script>
+    </c:when>
+</c:choose>
+
+<c:remove scope="session" var="seslog" />
+
+<c:set var="sespass" value="${sespass}" />
+<c:choose>
+    <c:when test="${sespass == 'success'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "Success",
+                text: "Please check email for password message",
+                icon: "success",
+            });
+        </script>
+    </c:when>
+</c:choose>
+
+<c:remove scope="session" var="sespass" />
+
+
         <header class="oai-header">
         </header><main class="_widget login-id">
   <section class="c70d410b8 _prompt-box-outer ce25df4c4">

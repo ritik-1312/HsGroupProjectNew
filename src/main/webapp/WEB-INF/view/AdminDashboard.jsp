@@ -4,6 +4,9 @@
 <head>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page isELIgnored="false"%>
+ <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +25,7 @@
 <link rel="stylesheet" href="assets/css/contactus.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
 
 </head>
 
@@ -42,6 +46,7 @@
     </script>
   </c:when>
 </c:choose>
+
 
 	<div class="wrapper">
 		<aside id="sidebar" class="js-sidebar">
@@ -102,7 +107,7 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a href="#" class="dropdown-item">Profile</a> <a href="#"
-									class="dropdown-item">Setting</a> <a href="#"
+									class="dropdown-item">Setting</a> <a href="logout"
 									class="dropdown-item">Logout</a>
 							</div></li>
 					</ul>
@@ -313,7 +318,7 @@
 							</div>
 
 							<div style="text-align: right;" class="delete_button">
-								<button type="submit" form="myForm" class="delete">
+								<button type="submit" onclick="confirmMultipleDelete()" class="delete">
 									<span class="shadow"></span> <span class="edge"></span> <span
 										class="front text"> Delete </span>
 								</button>
@@ -349,7 +354,7 @@
 													class="status ${message.status eq 'seen' ? 'seen' : 'unseen'}">${message.status}</td>
 
 
-												<td class="delete"><a href="delete/${message.id}">
+												<td class="delete"><a href="delete/${message.id}" onclick="confirmDelete(${message.id}); return false;">
 														<!-- Added anchor tag --> <i class="fas fa-trash-alt"
 														style="font-size: 22px; color: red; align-items: center;"></i>
 														<!-- Font Awesome trash icon -->
@@ -374,6 +379,7 @@
 
 						</form>
 
+						<!-- Custom dialog HTML -->
 						<!-- Custom dialog HTML -->
 						<div id="overlay"></div>
 						<div id="customDialog">
@@ -436,6 +442,102 @@ $(document).ready(function(){
         fieldCounter--; // Decrement field counter
     });
 });
+</script>
+<script>
+function confirmDelete(id) {
+  // Use SweetAlert for confirmation
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You won\'t be able to revert this!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+    width: '400px',
+    
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Use AJAX to perform the delete operation
+      $.ajax({
+        url: 'delete/' + id,
+        type: 'DELETE',
+        success: function(response) {
+          // Optionally, you can handle the response or update the UI
+          console.log('Delete success:', response);
+          location.reload();
+         
+          // Show a success message
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The message has been deleted.',
+          });
+          
+        },
+        error: function(xhr, status, error) {
+          console.error('Delete error:', status, error);
+        }
+      });
+    }
+  });
+}
+
+
+</script>  
+
+<!-- Your HTML and other content -->
+
+
+<script>
+function confirmMultipleDelete(){
+	 var selectedIds = document.querySelectorAll('input[name="ids"]:checked');
+
+     if (selectedIds.length === 0) {
+         // No IDs selected, show a SweetAlert message
+         Swal.fire({
+             icon: 'warning',
+             title: 'No IDs selected',
+             text: 'Please select at least one ID to delete.',
+             confirmButtonColor: '#3085d6',
+             confirmButtonText: 'OK',
+             width:200,
+             customClass: {
+                 popup: 'small-swal-dialog',
+                 title: 'small-swal-title',
+                 content: 'small-swal-content',
+                 confirmButton: 'small-swal-confirm-button',
+             }
+         });
+     } else {
+	      Swal.fire({
+	         title: 'Are you sure?',
+	         text: 'You won\'t be able to revert this!',
+	         icon: 'warning',
+	         showCancelButton: true,
+	         confirmButtonColor: '#d33',
+	         cancelButtonColor: '#3085d6',
+	         confirmButtonText: 'Yes, delete it!',
+	        	 customClass: {
+	                    popup: 'small-swal-dialog'
+	                }
+	      }).then((result) => {
+	         if (result.isConfirmed) {
+	            // Trigger the form submission or delete action for selected messages
+	            document.getElementById('myForm').submit();
+	           
+	         }
+	      });
+     }
+	   }
+</script>
+<script>
+    // Disable caching to force reload
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
 </script>
 
 

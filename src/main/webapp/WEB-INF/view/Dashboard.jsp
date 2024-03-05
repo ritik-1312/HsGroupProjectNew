@@ -124,7 +124,7 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a href="#" class="dropdown-item">Profile</a> <a href="#"
-									class="dropdown-item">Setting</a> <a href="#"
+									class="dropdown-item">Setting</a> <a href="logout2"
 									class="dropdown-item">Logout</a>
 							</div></li>
 					</ul>
@@ -487,7 +487,14 @@
 
 				</c:forEach>
 			</c:if> --%>
-
+<script>
+    // Disable caching to force reload
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+</script>
 
 
 										<script>
@@ -558,7 +565,6 @@
 </script>
 
 <!-- Scroll up button script -->
-
 <script>
 window.addEventListener('scroll', function() {
 	  var scrollToTopBtn = document.querySelector('.scroll-to-top-btn');

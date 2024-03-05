@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,7 @@ public class AdminController {
 	 UserService userService;
 	
 	 public static String uploadDir="C:\\upload\\";
-	 
-	@RequestMapping(value="gu", method=RequestMethod.GET)
+	 @RequestMapping(value="gu", method=RequestMethod.GET)
 	 public String getConts(HttpSession session)
 		{
 		  List<ContactUsMessage> l=userService.getContactUs();
@@ -45,7 +46,7 @@ public class AdminController {
 		                               ", Message: " + message.getMessage() +
 		                               ",  " + message.getTimestamp());*/
 		        
-			return 	"redirect:/viewDashboard";					//"AdminDashboard";
+			return "AdminDashboard";
 		}
 	 
 	 @ResponseBody
@@ -55,48 +56,111 @@ public class AdminController {
 		 userService.updateStatus(messageId);
 		 
 		 
-		return "redirect:/gu";
+		return "redirect:/AdminDashboard";
 		 
 	 }
-	 
-	 @RequestMapping("delete/{id}")
+	 @ResponseBody
+	 @RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
 	 public String delete(@PathVariable long id) {
 		 System.out.println("Delete id: "+id);
 		 long d = userService.delete(id);
-		return "redirect:/gu";
+		return "redirect:/AdminDashboard";
 	 }
-	 
-	 @RequestMapping("deleteMultiple")
+
+	 @RequestMapping(value="deleteMultiple")
 	 public String deleteMultiple(@RequestParam("ids") String[] ids) {
+		
+
 	     for (String id : ids) {
 	         Long messageId = Long.parseLong(id); // Convert String to Long
 	         userService.getDeleteMultiple(messageId);
 	     }
-	     return "redirect:/gu";
+	     return "redirect:/AdminDashboard";
 	 }
 
 	 @RequestMapping(value = "adlogin")
-		public String adminlogin(@ModelAttribute("user") LoginModel user,Model model,HttpSession session) 
-	 {
+		public String adminlogin(@ModelAttribute("user") LoginModel user,Model model,HttpSession session,HttpServletRequest request, HttpServletResponse response) {
 			//System.out.println("username :" +user.getEmail()+ "   pass:::" +user.getPassword() );
 		 
 		        
-			if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) 
-			{
+			if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
+				 
 				List<ContactUsMessage> l=userService.getContactUs();
 				 // System.out.println(l);
 				  Collections.reverse(l); 
 				        session.setAttribute("ul", l);
+				        //session.setAttribute("loginSuccess", true);
 						/*
 						 * for (ContactUsMessage message : l) { System.out.println("Name: " +
 						 * message.getName() + ", Email: " + message.getEmail() + ", Message: " +
 						 * message.getMessage() + ",  " + message.getTimestamp()); }
 						 */
-				return "redirect:/viewDashboard" ;         //"AdminDashboard";	
+				     
+				return "redirect:/AdminDashboard"; 	
 			} else {
 				return "redirect:/hsadamlogin";
 			}
 		}
+	 @RequestMapping("AdminDashboard")
+	 public String sr(HttpSession session,Model model) {
+	
+			 
+		 if (session.getAttribute("ul") == null) {
+	            // User is not authenticated, redirect to login page with an error message
+	           // model.addAttribute("errorMessage", "Please login to access the Dashboard.");
+	            return "redirect:/hsadamlogin";
+
+	        }else {
+			
+		 List<ContactUsMessage> l=userService.getContactUs();
+		
+		 // System.out.println(l);
+		  Collections.reverse(l); 
+		        session.setAttribute("ul", l);
+		        List<SidebarTopic> topic = userService.getSideTopic();
+				for (SidebarTopic sidebarTopic : topic) 
+				{
+					System.out.println("ID: " + sidebarTopic.getId() + ", Name: " + sidebarTopic.getTopic_name() );
+				}
+				model.addAttribute("side", topic);
+		        
+		        
+		        
+		        
+		        
+		 return "AdminDashboard";
+	 }
+	 }
+	 @RequestMapping("/logout")
+	 public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+		 // Perform logout actions (clear session, update user status, etc.)
+		// session.removeAttribute("ul");
+		    session.invalidate();
+
+		    // Set cache control headers to prevent caching of the logout page
+		    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		    response.setHeader("Pragma", "no-cache");
+		    response.setHeader("Expires", "0");
+
+		    // Ensure that the user can't navigate back to the dashboard
+		    return "redirect:/hsadamlogin?random=" + Math.random();
+
+	 }
+	 @RequestMapping("/logout2")
+	 public String logout2(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+		 // Perform logout actions (clear session, update user status, etc.)
+		// session.removeAttribute("ul");
+		    session.invalidate();
+
+		    // Set cache control headers to prevent caching of the logout page
+		    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		    response.setHeader("Pragma", "no-cache");
+		    response.setHeader("Expires", "0");
+
+		    // Ensure that the user can't navigate back to the dashboard
+		    return "redirect:/login?random=" + Math.random();
+
+	 }
 
 	 @RequestMapping(value = "viewDashboard")
 	 public String getSideForDropdown(Model model) 
@@ -108,7 +172,7 @@ public class AdminController {
 			}
 			model.addAttribute("side", topic);
 
-			return "AdminDashboard";
+			return "redirect:/AdminDashboard";
 	  }
 	 
 	 @RequestMapping(value = "save_sidebar")
