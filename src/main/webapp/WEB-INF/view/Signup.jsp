@@ -11,9 +11,7 @@
 <link rel="stylesheet" href="assets/css/loginsignup.css">
 <style id="custom-styles-container">
 body {
-	background: #ffffff;
-	font-family: ulp-font, -apple-system, BlinkMacSystemFont, Roboto,
-		Helvetica, sans-serif;
+  	background-image: linear-gradient(45deg, rgba(254, 246, 210, 0.53) 0%, rgba(254, 246, 210, 0.53) 14.286%,rgba(221, 240, 216, 0.53) 14.286%, rgba(221, 240, 216, 0.53) 28.572%,rgba(188, 233, 223, 0.53) 28.572%, rgba(188, 233, 223, 0.53) 42.858%,rgba(156, 227, 229, 0.53) 42.858%, rgba(156, 227, 229, 0.53) 57.144%,rgba(123, 220, 235, 0.53) 57.144%, rgba(123, 220, 235, 0.53) 71.42999999999999%,rgba(90, 214, 242, 0.53) 71.43%, rgba(90, 214, 242, 0.53) 85.71600000000001%,rgba(57, 207, 248, 0.53) 85.716%, rgba(57, 207, 248, 0.53) 100.002%),linear-gradient(135deg, rgb(246, 99, 200) 0%, rgb(246, 99, 200) 12.5%,rgb(223, 98, 196) 12.5%, rgb(223, 98, 196) 25%,rgb(199, 97, 192) 25%, rgb(199, 97, 192) 37.5%,rgb(176, 96, 188) 37.5%, rgb(176, 96, 188) 50%,rgb(152, 95, 184) 50%, rgb(152, 95, 184) 62.5%,rgb(129, 94, 180) 62.5%, rgb(129, 94, 180) 75%,rgb(105, 93, 176) 75%, rgb(105, 93, 176) 87.5%,rgb(82, 92, 172) 87.5%, rgb(82, 92, 172) 100%);  }
 }
 
 .cad93d05e {
@@ -245,8 +243,13 @@ form[data-provider] {
 .alert-message {
 	color: red;
 	display: none;
-    
+     background-color: transparent !important;
 }
+
+.c70d410b8 {
+    background-color: white;
+}
+
 
 </style>
 </head>
@@ -298,7 +301,7 @@ form[data-provider] {
 														name="name" id="name" type="text" value="" required=""
 														autocomplete="username" autocapitalize="none"
 														spellcheck="false" autofocus="">
-														<small class="alert-message" id="chkfullname">*Name should contain only alphabets</small>
+														<small class="alert-message" id="chkfullname" style="background-color: transparent;">*Name should contain only alphabets</small>
 
 													<div class="ce62ea098 js-required c68501b36 cca697036"
 														data-dynamic-label-for="email" aria-hidden="true">

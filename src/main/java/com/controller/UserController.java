@@ -71,9 +71,7 @@ public class UserController {
 	    
 	    // Output the concatenated integer
 	    System.out.println("OTP: " + otp);
-	    
-	    
-	 
+	     
 	 String result = userService.checkAndSetStatus(otp);
 
 	    if ("Login".equals(result)) {
@@ -143,20 +141,53 @@ public class UserController {
 	}
 
 	// cus = to sending password form otp page
+	
+	/*
+	 * @RequestMapping(value = "cus", method = RequestMethod.POST) public String
+	 * CheckotpandSendpasswor(Model model, @RequestParam("otp") int otp, HttpSession
+	 * session) throws MessagingException { 
+	 * 
+	 * String Status =userService.cecksendPassword(otp); 
+	 * 
+	 * if ("Login".equals(Status)) {
+	 * session.setAttribute("sespass", "success");
+	 * 
+	 * return "Login"; } else if ("pswotp".equals(Status)) {
+	 * session.setAttribute("sesfail", "fail"); return "pswotp"; } return "success";
+	 * }
+	 */
+	
 	@RequestMapping(value = "cus", method = RequestMethod.POST)
-	public String CheckotpandSendpasswor(Model model, @RequestParam("otp") int otp, HttpSession session)
-			throws MessagingException {
-		String Status = userService.cecksendPassword(otp);
-		if ("Login".equals(Status)) {
-			session.setAttribute("sespass", "success");
+    public String CheckotpandSendpasswor(Model model, @RequestParam("otpDigits") String otpDigits, HttpSession session) throws MessagingException 
+  {
+		String[] digitsArray = otpDigits.split(",");
+	    
+	    // Concatenate the digits into one integer
+	    int otp = 0;
+	    for (String digit : digitsArray) {
+	        otp = otp * 10 + Integer.parseInt(digit);
+	    }
+	    
+	    // Output the concatenated integer
+	    System.out.println("OTP: " + otp);
+	     
+	 String result = userService.cecksendPassword(otp);
 
-			return "Login";
-		} else if ("pswotp".equals(Status)) {
-			session.setAttribute("sesfail", "fail");
-			return "pswotp";
-		}
-		return "success";
-	}
+	    if ("Login".equals(result)) {
+	    	session.setAttribute("sespass", "success");
+	         return "Login"; 
+	    } 
+	    else if ("pswotp".equals(result)) {
+	        // Handle the case where the OTP is incorrect
+	    	session.setAttribute("sesfail", "fail");
+	        //model.addAttribute("error", "ssfdgfdg");
+	        return "pswotp";
+	          /*
+			 * userService.checkAndSetStatus(otp); return "Login";
+			 */
+            }return "success";
+        }
+	 
 
 	@RequestMapping(value = "login1", method = RequestMethod.POST)
 	public String ContactUs(@ModelAttribute("cm") ContactUsMessage cm, HttpSession session) {

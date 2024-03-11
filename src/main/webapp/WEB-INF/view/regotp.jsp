@@ -4,6 +4,13 @@
 <html lang="en">
 <head>
 	
+	<style type="text/css">
+	p {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0px;
+}
+	</style>
 	
 <link rel="stylesheet" href="assets/css/forOTP.css">
 
@@ -68,23 +75,48 @@
     				<hr class="mt-4">
     				<button class='btn btn-primary btn-block mt-4 mb-4 customBtn submit'>Verify</button>
 				</form>
+				<button type="button" class="btn btn-outline-info" id="resendButton" disabled>Resend OTP</button><br>
+				<p id="demo"></p>
 				</div>
               </div>
             </div>
         </div>
       </div>
+      
+      
+      <script>
+    // Set the time we're counting down to
+    var countDownDate = new Date().getTime() + (1 * 90 * 1000); // Current time + 1.30 minutes
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for minutes and seconds
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+        // If the count down is over, enable the button and write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "";
+            document.getElementById("resendButton").disabled = false;
+        }
+    }, 1000);
+
+    // Disable the button initially
+    document.getElementById("resendButton").disabled = true;
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 <%-- <html>
