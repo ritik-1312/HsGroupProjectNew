@@ -242,6 +242,12 @@ div:has(>form[data-provider]) {
 form[data-provider] {
 	margin-bottom: var(- -spacing-1);
 }
+.alert-message {
+	color: red;
+	display: none;
+    
+}
+
 </style>
 </head>
 <body class="_widget-auto-layout">
@@ -276,7 +282,7 @@ form[data-provider] {
 
 
 								<form method="POST" action="save" class=""
-									data-form-primary="true">
+									data-form-primary="true" onsubmit="return validate()">
 									<input type="hidden" name="state"
 										value="hKFo2SBPZzltX3hwZUYtd1VoRENqSmtUcGVZVlFSVzl3cFdMeqFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDlUNG1vNG95V1ZXQXZMLXVYdUxyNldRT0s0a3NvQi01o2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc">
 
@@ -286,11 +292,13 @@ form[data-provider] {
 												<div class="c1552b97d c305d5b0c text c142968af cfe1de4da"
 													data-action-text="" data-alternate-action-text="">
 													<label class="ce62ea098 no-js c68501b36 cca697036"
-														for="email"> Full Name </label> <input
+														for="email"> Full Name </label> 
+														<input
 														class="input cb739a8a3 ca3e05b53" inputmode="text"
-														name="name" id="email" type="text" value="" required=""
+														name="name" id="name" type="text" value="" required=""
 														autocomplete="username" autocapitalize="none"
 														spellcheck="false" autofocus="">
+														<small class="alert-message" id="chkfullname">*Name should contain only alphabets</small>
 
 													<div class="ce62ea098 js-required c68501b36 cca697036"
 														data-dynamic-label-for="email" aria-hidden="true">
@@ -302,10 +310,10 @@ form[data-provider] {
 													<label class="ce62ea098 no-js c68501b36 cca697036"
 														for="email"> Contact NO </label> <input
 														class="input cb739a8a3 ca3e05b53" inputmode="tel"
-														name="contact" id="email" type="text" value="" required=""
+														name="contact" id="contact" type="text" value="" required=""
 														autocomplete="username" autocapitalize="none"
 														spellcheck="false" autofocus="">
-
+														<small class="alert-message" id="chkphone">*only 10 numbers</small>
 													<div class="ce62ea098 js-required c68501b36 cca697036"
 														data-dynamic-label-for="email" aria-hidden="true">
 														Contact No</div>
@@ -319,7 +327,7 @@ form[data-provider] {
 														name="email" id="email" type="text" value="" required=""
 														autocomplete="username" autocapitalize="none"
 														spellcheck="false" autofocus="">
-
+													<small class="alert-message" id="chkemail">*Email Enter In Proper Format(@gmail.com)</small>
 													<div class="ce62ea098 js-required c68501b36 cca697036"
 														data-dynamic-label-for="email" aria-hidden="true">
 														Email address</div>
@@ -330,10 +338,10 @@ form[data-provider] {
 													<label class="ce62ea098 no-js c68501b36 cca697036"
 														for="email"> Password </label> <input
 														class="input cb739a8a3 ca3e05b53" inputmode="text"
-														name="password" id="email" type="password" value=""
+														name="password" id="password" type="password" value=""
 														required="" autocomplete="username" autocapitalize="none"
 														spellcheck="false" autofocus="">
-
+														<small class="alert-message" id="chkpassword">*atlist one capital lat,one special symbol</small>
 													<div class="ce62ea098 js-required c68501b36 cca697036"
 														data-dynamic-label-for="email" aria-hidden="true">
 														Password</div>
@@ -371,10 +379,7 @@ form[data-provider] {
 						</div>
 
 						<div class="cd916205d c5a2accec">
-
-
-
-							<form method="post" data-provider="google"
+						<form method="post" data-provider="google"
 								class="ca4a314a7 c03809529 c34257a55" data-form-secondary="true">
 								<input type="hidden" name="state"
 									value="hKFo2SBPZzltX3hwZUYtd1VoRENqSmtUcGVZVlFSVzl3cFdMeqFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDlUNG1vNG95V1ZXQXZMLXVYdUxyNldRT0s0a3NvQi01o2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc">
@@ -415,15 +420,62 @@ form[data-provider] {
         }
         
             updateHeader('Create your account');
-        
-        
-        
-        
-    </script>
+            
+            function validate() {
+				 var name=document.getElementById('name').value;
+				 /* var letters = /^[A-Za-z ]+$/; */
+				 var contact = document.getElementById('contact').value.trim();
+				 var digitsRegex = /^\d{10}$/;
+				 var email = document.getElementById('email').value;
+				 var emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				 var password = document.getElementById('password').value;
+				 var passwordformat = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{1,}$/;
+				 /* Contains at least one uppercase letter.
+Contains at least one special symbol.*/
+
+				 let isValid=true;
+				 
+			  if(!/^[A-Za-z ]+$/.test(name))
+			  {
+				  document.getElementById("chkfullname").style.display = "block";
+				  document.getElementById('name').focus();
+	            	isValid=false;
+	          } else {
+	            document.getElementById("chkfullname").style.display = "none";
+	          }
+			  
+			  if( !/^\d{10}$/.test(contact))
+			  {
+				document.getElementById('chkphone').style.display = "block";
+				document.getElementById('contact').focus();
+				isValid=false;
+			  }else{
+				 document.getElementById('chkphone').style.display = "none";
+			  }
+				 
+			  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) 
+			  {
+	          	document.getElementById("chkemail").style.display = "block";
+	          	document.getElementById('email').focus();
+	          	isValid=false;
+	          } else {
+	              document.getElementById("chkemail").style.display = "none";
+	          }
+			  if(!/^(?=.*[A-Z])(?=.*[!@#$%^&*]).{1,}$/.test(password))
+			  {
+			  	document.getElementById('chkpassword').style.display = "block";
+			  	document.getElementById('password').focus();
+			  	isValid=false;
+			  }else{
+			  	document.getElementById('chkpassword').style.display = "none";
+			  }
+			return isValid; 
+            }
+      </script>
+     
 
 </body>
 </html>
-
 
 
 
