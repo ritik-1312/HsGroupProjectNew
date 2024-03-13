@@ -11,16 +11,34 @@
 <link rel="stylesheet" href="https://icons.getbootstrap.com" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 	integrity="sha384-...insert integrity code here...-...">
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://kit.fontawesome.com/ae360af17e.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="assets/css/Dashboard.css">
 
-
+<script >
+window.onload = function () {
+    if (performance.navigation.type === 2) {
+        Swal.fire({
+            title: 'Redirection detected',
+            text: "Please Click OK to check whether user logged in or out",
+             icon: 'warning', 
+            showCancelButton: false, 
+            allowOutsideClick: false, 
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            // If the user clicks OK, redirect to the login page
+            if (result.isConfirmed) {
+            	 window.location.reload();  
+            }
+        });
+    }
+};
+</script>
 
 <style>
 /* To show Code inside a box */

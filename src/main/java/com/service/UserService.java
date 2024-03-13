@@ -42,6 +42,8 @@ public interface UserService {
 	
 	public List<SidebarTopic> checkSideTopic(String topic_name);
 	public void FileReaderForCodeFiles(SubTopic subtopic1, List<CodeFile> codeFiles, String uploadDir);
-	
+	public int updateStatus2(int otps);
+	public int updateotp2(String email,int otp) throws MessagingException;
+	public int updateotp3(String email, int otp)throws MessagingException;
 	
 }

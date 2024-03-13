@@ -352,53 +352,147 @@
 
     
 <!-- Newsletter Section -->
-        <section class="section newsletter" id="newsletter">
-            <div class="newletter-container container">
-                <a href="#" class="logo-content flex">
-                        
-                        <span class="logo-text">Contact Us</span>
-                    </a>
+       <!-- Reviews Section -->
+		<section class="section review" id="review">
+			<div class="review-container container">
+				<div class="review-text">
+					<h4 class="section-subtitle">
+						<i>Reviews</i>
+					</h4>
+					<h2 class="section-title">What Our Student Says</h2>
+					<p class="section-description">Here is review of some students
+						who learned from us and became successfull in their life.</p>
+				</div>
 
-                    <p class="section-description">Need more details? we will be happy to patiently explain everything that you want to know. just send the message below , and you can contact us with our email/whatsapp or other social handels.
+				<div class="tesitmonial swiper mySwiper">
+					<div class="swiper-wrapper">
+						<!-- <div class="testi-content swiper-slide flex">
+                                            <img src="assets/img/testimonials/testimonials-1.jpg" alt="" class="review-img">
+                                            <p class="review-quote">Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word!</p>
+                                            <i class='bx bxs-quote-alt-left quote-icon'></i>
 
-</p>
+                                            <div class="testi-personDetails flex">
+                                                    <span class="name">Marnie Rotter</span>
+                                                    <span class="job">App Developer</span>
+                                            </div>
+                                    </div> -->
+						<div class="testi-content swiper-slide flex">
+							<img src="assets/img/testimonials/testimonials-2.jpg" alt=""
+								class="review-img">
+							<p class="review-quote">The best thing about H. S. group is
+								that, they understand student issue and they handle the student
+								with proper technique so that student feels comfertable</p>
+							<i class='bx bxs-quote-alt-left quote-icon'></i>
 
-                    <div class="newsletter-inputBox">
-                            <input type="text" placeholder="Your Name" class="newletter-input">
-                            
-                            <!-- <button class="button newsletter-button">Subscribe</button> -->
-                    </div>
-                    <div class="newsletter-inputBox">
-                            <input type="email" placeholder="Your Email" class="newletter-input">
-                            
-                            <!-- <button class="button newsletter-button">Subscribe</button> -->
-                    </div>
-                    <div class="newsletter-inputBox">
-                            <input type="email" placeholder="Your Message" class="newletter-input">
-                            <!-- <textarea placeholder="Your Email" class="newletter-input" id="myTextarea"></textarea> -->
-                            
-                            <!-- <button class="button newsletter-button">Subscribe</button> -->
-                    </div>
-                    <div class="newsletter-inputBox">
-                            
-                            
-                            <button type="submit" class="button">Send Message</button>
-                    </div>
-                    
-                     <br>
-                     
+							<div class="testi-personDetails flex">
+								<span class="name">Rahul Singh Parihar</span> <span class="job">MRRSoft,
+									Nagpur</span>
+							</div>
+						</div>
+						<div class="testi-content swiper-slide flex">
+							<img src="assets/img/testimonials/testimonials-3.jpg" alt=""
+								class="review-img">
+							<p class="review-quote">I really appriciate the hardwork that
+								our menors take to develope us, They provide very friendly
+								enviornment so that we can easily focus on study.</p>
+							<i class='bx bxs-quote-alt-left quote-icon'></i>
 
-                    <div class="newsletter media-icons flex">
-                        <a href="https://www.facebook.com"><i class='bx bxl-whatsapp quote-icon' ></i></a>
-                        <a href="https://www.facebook.com"><i class='bx bxs-envelope bx-tada quote-icon' ></i></a>
-                        <a href="https://twitter.com/i/flow/login"><i class='bx bxl-facebook quote-icon' ></i></a>
-                        <a href="https://www.instagram.com/accounts/login"><i class='bx bxl-instagram-alt quote-icon' ></i></a>
-                        <a href="https://github.com/login"><i class='bx bxl-github quote-icon'></i></a>
-                        <a href="https://www.youtube.com/login"><i class='bx bxl-youtube quote-icon'></i></a>
-                </div>
-            </div>
-        </section>
-        
+							<div class="testi-personDetails flex">
+								<span class="name">Pooja Itankar</span> <span class="job">Virtual
+									Galaxy, Nagpur</span>
+							</div>
+						</div>
+						<div class="testi-content swiper-slide flex">
+							<img src="assets/img/testimonials/testimonials-4.jpg" alt=""
+								class="review-img">
+							<p class="review-quote">They are really prooving that they
+								dont make fake promises. They develope student from root and
+								make their future more bright.</p>
+							<i class='bx bxs-quote-alt-left quote-icon'></i>
+
+							<div class="testi-personDetails flex">
+								<span class="name">Shubhangi Nemade</span> <span class="job">Averta
+									stratergy (Java Developer)</span>
+							</div>
+						</div>
+						<div class="testi-content swiper-slide flex">
+							<img src="assets/img/testimonials/testimonials-5.jpg" alt=""
+								class="review-img">
+							<p class="review-quote">In my life first time I learned lot
+								of things with fun with collegues and teacher, At any moment I
+								dont felt that the person who was teaching me was a teacher, It
+								always feels me that they are my friend.</p>
+							<i class='bx bxs-quote-alt-left quote-icon'></i>
+
+							<div class="testi-personDetails flex">
+								<span class="name">Ujjwal Gadekar</span> <span class="job">Micropro
+									Software Solutions Pvt. Ltd.</span>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-button-next swiper-navBtn"></div>
+					<div class="swiper-button-prev swiper-navBtn"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Newsletter Section -->
+		<section class="section newsletter" id="newsletter">
+			<form action="login1" method="post">
+			<div class="newletter-container container">
+				<a href="#" class="logo-content flex"> <span class="logo-text">Contact
+						Us</span>
+				</a>
+
+				<p class="section-description">Need more details? we will be
+					happy to patiently explain everything that you want to know. just
+					send the message below , and you can contact us with our
+					email/whatsapp or other social handels.</p>
+				
+				<div class="newsletter-inputBox">
+					<input type="text" name="name" placeholder="Your Name" class="newletter-input">
+
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<input type="email" placeholder="Your Email" name="email"
+						class="newletter-input">
+
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<input type="text" placeholder="Your Message" name="message"
+						class="newletter-input">
+					<!-- <textarea placeholder="Your Email" class="newletter-input" id="myTextarea"></textarea> -->
+
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<button type="submit" class="button">Send Message</button>
+				</div>
+				
+				<br>
+
+
+				<div class="newsletter media-icons flex">
+					<a href="https://www.facebook.com"><i
+						class='bx bxl-whatsapp quote-icon'></i></a> <a
+						href="https://www.facebook.com"><i
+						class='bx bxs-envelope bx-tada quote-icon'></i></a> <a
+						href="https://twitter.com/i/flow/login"><i
+						class='bx bxl-facebook quote-icon'></i></a> <a
+						href="https://www.instagram.com/accounts/login"><i
+						class='bx bxl-instagram-alt quote-icon'></i></a> <a
+						href="https://github.com/login"><i
+						class='bx bxl-github quote-icon'></i></a> <a
+						href="https://www.youtube.com/login"><i
+						class='bx bxl-youtube quote-icon'></i></a>
+				</div>
+			</div>
+			</form>
+		</section>
 <!-- Brand Section -->
        <!-- <section class="section review" id="review">
             <div class="review-container container">

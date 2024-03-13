@@ -30,7 +30,25 @@
 </head>
 
 <body>
-
+<script>
+window.onload = function () {
+    if (performance.navigation.type === 2) {
+        Swal.fire({
+            title: 'Redirection detected',
+            text: "Please Click OK to check whether user logged in or out",
+             icon: 'warning', 
+            showCancelButton: false, 
+            allowOutsideClick: false, 
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            // If the user clicks OK, redirect to the login page
+            if (result.isConfirmed) {
+            	 window.location.reload();  
+            }
+        });
+    }
+};
+</script>
 <c:set var="sesexist" value="${sesexist }"></c:set>
 <c:choose>
   <c:when test="${sesexist == 'sidebarfail'}">

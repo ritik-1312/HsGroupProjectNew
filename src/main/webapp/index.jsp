@@ -439,6 +439,7 @@
 
 		<!-- Newsletter Section -->
 		<section class="section newsletter" id="newsletter">
+			<form action="login1" method="post">
 			<div class="newletter-container container">
 				<a href="#" class="logo-content flex"> <span class="logo-text">Contact
 						Us</span>
@@ -448,7 +449,7 @@
 					happy to patiently explain everything that you want to know. just
 					send the message below , and you can contact us with our
 					email/whatsapp or other social handels.</p>
-				<form action="login1" method="post">
+				
 				<div class="newsletter-inputBox">
 					<input type="text" name="name" placeholder="Your Name" class="newletter-input">
 
@@ -470,7 +471,7 @@
 				<div class="newsletter-inputBox">
 					<button type="submit" class="button">Send Message</button>
 				</div>
-				</form>
+				
 				<br>
 
 
@@ -489,6 +490,7 @@
 						class='bx bxl-youtube quote-icon'></i></a>
 				</div>
 			</div>
+			</form>
 		</section>
 
 		<!-- Brand Section -->

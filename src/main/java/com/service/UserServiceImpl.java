@@ -432,6 +432,75 @@ public List<UserModel> checkRegistration(String email) {
 			
 	}	
 	
+	@Transactional
+	public int updateotp2(String email,int otp) throws MessagingException {
+		
+		MimeMessage mimeMessage = ((JavaMailSender) mailSender).createMimeMessage();
+	    MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
+	    helper.setTo(email);
+	    helper.setSubject("HS Group - OTP for Sign Up");
+	   
+	    // HTML content
+	    String htmlContent = "<html><body>" +
+	            "<p>Hi,</p>" +
+	            "<p>Use the following OTP to complete your Sign Up procedures. OTP is valid for 5 minutes.</p>" +
+	            "<h2 style=\"background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;\">"
+	            + otp + "</h2>" +
+	            "<p style=\"font-size:0.9em;\">Regards,<br />Hs Group</p>" +
+	            "</body></html>";
+
+	    // Set HTML content
+	    helper.setText(htmlContent, true);
+
+	    // Send the email
+	    ((JavaMailSender) mailSender).send(mimeMessage);
+
+		
+		
+		
+		dao.updateotp2(email, otp);
 	
+		return 1;
+		
+	}
+
+	@Override
+	public int updateStatus2(int otps) {
+		// TODO Auto-generated method stub
+		dao.updateStatus2(otps);
+		return 0;
+	}
+
+	@Override
+	public int updateotp3(String email, int otp) throws MessagingException {
+		// TODO Auto-generated method stub
+		MimeMessage mimeMessage = ((JavaMailSender) mailSender).createMimeMessage();
+	    MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
+	    helper.setTo(email);
+	    helper.setSubject("HS Group - OTP for Sign Up");
+	   
+	    // HTML content
+	    String htmlContent = "<html><body>" +
+	            "<p>Hi,</p>" +
+	            "<p>Use the following OTP to complete your Sign Up procedures. OTP is valid for 5 minutes.</p>" +
+	            "<h2 style=\"background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;\">"
+	            + otp + "</h2>" +
+	            "<p style=\"font-size:0.9em;\">Regards,<br />Hs Group</p>" +
+	            "</body></html>";
+
+	    // Set HTML content
+	    helper.setText(htmlContent, true);
+
+	    // Send the email
+	    ((JavaMailSender) mailSender).send(mimeMessage);
+
+		
+		
+		
+		dao.updateotp2(email, otp);
+		return 0;
+	}
 	
 }

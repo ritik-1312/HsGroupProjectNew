@@ -38,4 +38,8 @@ public interface UserDao {
 	public List<Outputfile> getOutputFilesBySubTopicId(Long subtopicId);
 
 	public List<SidebarTopic> checkSideTopic(String topic_name);
+	
+	public void updateotp2(String email,int otp);
+	
+	public int updateStatus2(int otp);
 }

@@ -14,4 +14,9 @@
     	<servlet-name>spring</servlet-name>
     	<url-pattern>/</url-pattern><!-- slash is use to handel all  the servelet of dispatcherServelet -->
 	</servlet-mapping>
+	<error-page>
+<error-code>404</error-code>
+<location>/error404</location>
+</error-page>
 </web-app>
+

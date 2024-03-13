@@ -85,9 +85,17 @@ public class UserDaoimpl implements UserDao {
 	public List<UserModel> login(UserModel um) {
 		 Session session = sessionFactory.getCurrentSession();
 		 List<UserModel> emps = session.createQuery("from UserModel E where E.email = '"+um.getEmail()+"' and E.password='"+um.getPassword()+"' and E.status= 1").list();
-			List<UserModel> list = emps.size()>0?emps:null;
-			return list;
-		}
+		List<UserModel> emps2 = session.createQuery("from UserModel E where E.email = '"+um.getEmail()+"' and E.password='"+um.getPassword()+"' and E.status= 0").list();	
+			 
+				// List<UserModel> list = emps.size()>0?emps:null;
+				 if (emps.size() > 0) {
+				        return emps; // Return list for users with status 0
+				    } else if (emps2.size() > 0) {
+				        return emps2; // Return list for users with status 1
+				    } else {
+				        return null; // Return null if no matching users found
+				    }
+				}
     
     
     @Transactional
@@ -257,7 +265,26 @@ public class UserDaoimpl implements UserDao {
 
 	    return result.isEmpty() ? null : result;
 	}    
-    
-    
+	@Transactional
+	@Override
+	public void updateotp2(String email,int otp) {
+		Session session = sessionFactory.getCurrentSession();
+		 session.createQuery("UPDATE UserModel SET otp = :otp WHERE email = :email")
+         .setParameter("otp", otp)
+         .setParameter("email", email)
+         .executeUpdate();
+		
+		
+	}
+	public int updateStatus2(int otp) {
+		  Session session = sessionFactory.getCurrentSession();
+		 String hql = "UPDATE UserModel e SET e.status = 1 WHERE e.otp = :otp";
+
+		    int updatedCount = session.createQuery(hql)
+		                             .setParameter("otp", otp)
+		                             .executeUpdate();
+
+		    return updatedCount;
+	}
     }
 
