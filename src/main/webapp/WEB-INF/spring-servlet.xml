@@ -85,6 +85,7 @@
 				<value>com.model.SidebarTopic</value>
 				<value>com.model.SubTopic</value>
 				<value>com.model.Outputfile</value>
+				<value>com.model.Placements</value>
 			</list>
 		</property>
 		</bean>

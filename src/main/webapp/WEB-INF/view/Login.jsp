@@ -156,7 +156,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 9px 0 0;
+       /*  padding: 9px 0 0; */
         flex: 0 0 auto;
     }
     .oai-header svg {
@@ -225,6 +225,11 @@ body {
             margin-bottom: var(--spacing-1);
         }
     
+	
+		.bx img {
+		  max-width: 150px;
+		  max-height: 150px;
+		}
 
 </style>
 </head>
@@ -275,7 +280,7 @@ body {
         <header class="c194aa624 ce8ab6053">
           <div title="OpenAI" id="custom-prompt-logo" style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important"></div>
         
-			<i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"></i>
+			<i class='bx'><img alt="" src="assets/img/home/hs-group 002.png"></i>
           
             <h1 class="c751d88a6 cefd29ea5">Welocme Back</h1>
           <br> 

@@ -135,11 +135,11 @@
   from {opacity: .4}
   to {opacity: 1}
 }
- 
- 
- 
- 
 
+.logo-content img {
+  max-width: 50px;
+  max-height: 60px;
+}
 
 </style>
     <meta charset="UTF-8">
@@ -172,7 +172,7 @@
     <header class="header custom">
             <nav class="nav container flex">
                     <a href="#" class="logo-content flex">
-                        <i class='bx'><img alt="" src="assets/img/home/hs-group (1).ico"></i>
+                        <i class='bx'><img alt="" src="assets/img/home/HS Group Logo  (1) (1).png"></i>
                        
                         <span class="logo-text">HS Group</span>
                     </a>

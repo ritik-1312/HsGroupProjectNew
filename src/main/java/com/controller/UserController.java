@@ -25,6 +25,7 @@ import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.Outputfile;
+import com.model.Placements;
 import com.model.SidebarTopic;
 import com.model.SubTopic;
 import com.model.UserModel;
@@ -393,5 +394,7 @@ public class UserController {
 				 */
             }return "success";
 	        }
+	 
+	
 	 
 }

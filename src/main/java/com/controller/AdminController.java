@@ -1,9 +1,12 @@
 package com.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +27,7 @@ import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.Outputfile;
+import com.model.Placements;
 import com.model.SidebarTopic;
 import com.model.SubTopic;
 import com.service.UserService;
@@ -251,6 +255,110 @@ public class AdminController {
 			return "redirect:/viewDashboard";
 		}
 	 
+	 //Placement form upload method
+	 @RequestMapping(value = "/uploadplacement", method = RequestMethod.POST)
+		public String SavePlacements(@ModelAttribute("plmt") Placements plmt,@RequestParam("image")CommonsMultipartFile file  ) 
+		{    
+		        //System.out.println("name: " + plmt.getName() + "\n package" + plmt.getPakage());
+			plmt.setImgname(file.getOriginalFilename());
+			try{
+				String path = "C:\\upload\\";
+					
+				 String fileName1 =  plmt.getImgname();
+				  plmt.setImgname(fileName1);
+				  byte[] barr1 =
+				  file.getBytes();
+				  BufferedOutputStream bout1 = new BufferedOutputStream( new
+				  FileOutputStream(path + "\\" + fileName1)); 
+				  bout1.write(barr1);
+				  bout1.flush(); 
+				  bout1.close(); 
+		    		}
+			catch (Exception e) {
+				// TODO: handle exception
+				System.out.print(e);
+			}
+				plmt.setImgname(file.getOriginalFilename());
+		        int i = userService.savePlacement(plmt);
+		        System.out.print("\n"+i+"\n");
+		        
+		        return "redirect:/viewDashboard";
+		}
+	 
+	 	//Retriving placement data
+	 @RequestMapping("viewPlacement")
+	 public String gotoplacment(HttpSession session,Model model)
+	 {
+		 List<Placements> list1=userService.getPlacemntlist1(); //retrieve latest 10 student data
+		 List<Placements> list2=userService.getPlacemntlist2(); //retrieve all student data according to high package
+		 List<String> imageFildList=list1.stream().map(Placements::getImgname).collect(Collectors.toList());
+		 System.out.println("List 1 (latest 10 placements):");
+		 for (Placements placement : list1) {
+		   System.out.println(placement.getName());
+		 }
+
+		 System.out.println("\nList 2 (placements from service 2):");
+		 // Print List 2 using for-each loop
+		 for (Placements placement : list2) {
+		   System.out.println(placement.getName()); 
+		 }
+		 session.setAttribute("list1", list1);
+		 model.addAttribute("list2", list2);
+		 model.addAttribute("imgname",imageFildList);
+		 return "myPlacement";
+	 }
+	 
+	 //Edit placement details (binding data into form)
+	 @RequestMapping("goEditpage/{id}")
+	 public String gotoEditpage(Model model,@PathVariable int id)
+	 {
+		 List<Placements> list=userService.forEdit(id);
+		 model.addAttribute("Edit", list);
+		 return "editPlacment";
+	 }
+	 
+	 //Editing placement details (after clicking update button)
+	 @RequestMapping(value = "/updateEdit", method = RequestMethod.POST)
+		public String updateEdited( @ModelAttribute ("pls") Placements pls,@RequestParam ("image") CommonsMultipartFile file)
+	 	{
+		 	System.out.print("\n\n"+pls);
+		 	if(!file.isEmpty())
+		 	{  
+		 		pls.setImgname(file.getOriginalFilename());
+		 		System.out.print("\n\nform if:"+pls.getName());
+			 	System.out.print("\n\n"+pls.getImgname()+"\n\n");
+			 	pls.setImgname(file.getOriginalFilename());
+			 	try{
+					  String path = "C:\\Users\\ASUS\\git\\HsGroupProjectNew\\src\\main\\webapp\\assets\\img\\home";
+					  String fileName1 =  pls.getImgname();
+					  pls.setImgname(fileName1);
+					  byte[] barr1 =file.getBytes();
+					  BufferedOutputStream bout1 = new BufferedOutputStream( new FileOutputStream(path + "\\" + fileName1)); 
+					  bout1.write(barr1);
+					  bout1.flush(); 
+					  bout1.close(); 
+			    }
+				catch (Exception e) 
+			 	{
+					System.out.print(e);
+				}
+			 	userService.updateEdited(pls);
+		 	}else
+		 	{
+		 		System.out.print("\n\nform else:"+pls.getName());
+		 		userService.updateEdited(pls);
+			}
+		 	return "redirect:/viewPlacement";
+	 	}
+	 
+	 //Delete placement details (card will be delete)
+	 @RequestMapping("deletecard/{id}")
+	 public String delete(@PathVariable ("id") int id) 
+	  {
+		 System.out.print("\n\n id to delete:"+id);
+		 String status = userService.delete(id);
+	  return "redirect:/viewPlacement"; 
+	  }
 	 
 }
 

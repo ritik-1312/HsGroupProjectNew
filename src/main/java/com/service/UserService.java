@@ -8,6 +8,7 @@ import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.Outputfile;
+import com.model.Placements;
 import com.model.SidebarTopic;
 import com.model.SubTopic;
 import com.model.UserModel;
@@ -45,5 +46,11 @@ public interface UserService {
 	public int updateStatus2(int otps);
 	public int updateotp2(String email,int otp) throws MessagingException;
 	public int updateotp3(String email, int otp)throws MessagingException;
+	public int savePlacement(Placements plmt);
+	public List<Placements> getPlacemntlist1();
+	public List<Placements> getPlacemntlist2();
+	public List<Placements> forEdit(int id);
+	public String updateEdited(Placements pls);
+	public String delete(int id);
 	
 }

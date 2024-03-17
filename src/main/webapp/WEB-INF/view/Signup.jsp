@@ -86,6 +86,13 @@ supports (mask-image: url( '/static /img /branding-generic /copy-icon.svg
 	white-space: nowrap;
 	width: 1px;
 }
+
+
+.logo-content img {
+  max-width: 50px;
+  max-height: 60px;
+}
+
 </style>
 <noscript>
 	<style>
@@ -250,6 +257,10 @@ form[data-provider] {
     background-color: white;
 }
 
+.bx img {
+		  max-width: 150px;
+		  max-height: 150px;
+		}
 
 </style>
 </head>
@@ -265,7 +276,7 @@ form[data-provider] {
 							style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important"></div>
 
 						<i class='bx'><img alt=""
-							src="assets/img/home/hs-group (1).ico"></i>
+							src="assets/img/home/hs-group 002.png"></i>
 
 						<h1 class="c751d88a6 cefd29ea5">Create your account</h1>
 

@@ -448,8 +448,8 @@ body._hide-prompt-logo .c97c10b1a,body._use-custom-prompt-logo .c97c10b1a {
     justify-content: center;
     justify-content: var(--page-background-alignment,center);
     width: 100%;
-    padding: 80px 0;
-    padding: var(--outer-padding) 0
+    /* padding: 80px 0;
+    padding: var(--outer-padding) 0 */
 }
 
 @supports (grid-gap: 1px) {
@@ -467,8 +467,8 @@ body._hide-prompt-logo .c97c10b1a,body._use-custom-prompt-logo .c97c10b1a {
         -moz-column-gap: calc(var(--outer-padding)*2);
         column-gap: calc(var(--outer-padding)*2);
         width: 100%;
-        padding: 80px;
-        padding: var(--outer-padding);
+        padding: 2px;
+        /* padding: var(--outer-padding); */
         min-height: 100vh;
         height: -webkit-fit-content;
         height: -moz-fit-content;
@@ -2344,8 +2344,8 @@ input:-webkit-autofill,input:-webkit-autofill:focus,input:-webkit-autofill:hover
 }
 
 .c194aa624,.c016c9f71 {
-    padding: 40px 40px 24px;
-    padding: var(--spacing-5) var(--spacing-5) var(--spacing-3);
+    /* padding: 40px 40px 24px;
+    padding: var(--spacing-5) var(--spacing-5) var(--spacing-3); */
     line-height: 1.5;
     text-align: center;
     flex-shrink: 0
@@ -2441,7 +2441,7 @@ body._hide-prompt-logo .c751d88a6 {
 }
 
 .c751d88a6 {
-    margin: var(--header-title-spacing,var(--spacing-3)) 0 var(--spacing-2);
+    /* margin: var(--header-title-spacing,var(--spacing-3)) 0 var(--spacing-2); */
     font-size: 24px;
     font-size: var(--title-font-size);
     font-weight: 400;

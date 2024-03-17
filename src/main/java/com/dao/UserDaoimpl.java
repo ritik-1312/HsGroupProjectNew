@@ -1,9 +1,13 @@
 package com.dao;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import com.model.CodeFile;
 import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.Outputfile;
+import com.model.Placements;
 import com.model.SidebarTopic;
 import com.model.SubTopic;
 import com.model.UserModel;
@@ -285,6 +290,91 @@ public class UserDaoimpl implements UserDao {
 		                             .executeUpdate();
 
 		    return updatedCount;
+	}
+
+	@Transactional
+	@Override
+	public int savePlacement(Placements plmt) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+	    org.hibernate.Transaction tx = null;
+	    tx =  session.beginTransaction();
+        
+        int i=(Integer)session.save(plmt);
+        
+        tx.commit();
+        session.close();
+        return i;	 
+	}
+
+	
+	@Transactional
+	@Override
+	public List<Placements> getPlacemntlist1() {
+		// TODO Auto-generated method stub
+		Session s=sessionFactory.openSession();
+		List<Placements> list2=s.createQuery("from Placements").list();
+		Collections.reverse(list2);
+		s.close();
+		return list2.stream().limit(10).collect(Collectors.toList());
+	}
+
+	@Transactional
+	@Override
+	public List<Placements> getPlacemntlist2() {
+		// TODO Auto-generated method stub
+		Session s=sessionFactory.openSession();
+		List<Placements> list2;
+		try {
+	        Query query = s.createQuery("FROM Placements p ORDER BY p.pakage DESC");
+	        list2 = query.list();
+	    } finally {
+	        s.close();
+	    }
+		return list2;
+	}
+
+
+	@Override
+	public List<Placements> forEdit(int id) {
+		// TODO Auto-generated method stub
+Session s=sessionFactory.openSession();
+		
+		Placements placement=(Placements) s.createQuery("from Placements where id=:id").setParameter("id", id).uniqueResult();
+		
+		List<Placements> result=new ArrayList<>();
+		 if(placement != null)
+		 {
+			 result.add(placement);
+		 }
+		 s.close();
+		return result;
+	}
+
+
+	@Transactional
+	@Override
+	public String updateEdited(Placements pls) {
+	    	
+			Session session = sessionFactory.getCurrentSession();
+		    session.update(pls);
+	        return "0";
+	}
+
+
+	@Override
+	public String delete(int id) {
+		// TODO Auto-generated method stub
+		System.out.print("thsi is form dao deleteID:"+id);
+		Session s=sessionFactory.openSession();
+		Transaction tx=s.beginTransaction();
+		Placements p=s.get(Placements.class, id);
+		
+		s.delete(p);
+		tx.commit();
+		s.close();
+		
+		return "1";
 	}
     }
 

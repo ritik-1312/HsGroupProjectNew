@@ -24,6 +24,7 @@ import com.model.ContactUsMessage;
 import com.model.LoginModel;
 import com.model.MailModel;
 import com.model.Outputfile;
+import com.model.Placements;
 import com.model.SidebarTopic;
 import com.model.SubTopic;
 import com.model.UserModel;
@@ -455,10 +456,7 @@ public List<UserModel> checkRegistration(String email) {
 
 	    // Send the email
 	    ((JavaMailSender) mailSender).send(mimeMessage);
-
-		
-		
-		
+			
 		dao.updateotp2(email, otp);
 	
 		return 1;
@@ -495,12 +493,46 @@ public List<UserModel> checkRegistration(String email) {
 
 	    // Send the email
 	    ((JavaMailSender) mailSender).send(mimeMessage);
-
-		
-		
-		
+	
 		dao.updateotp2(email, otp);
 		return 0;
+	}
+
+	@Override
+	public int savePlacement(Placements plmt) {
+		// TODO Auto-generated method stub
+		dao.savePlacement(plmt);
+		return 0;
+	}
+
+	@Override
+	public List<Placements> getPlacemntlist1() {
+		// TODO Auto-generated method stub
+		return dao.getPlacemntlist1();
+	}
+
+	@Override
+	public List<Placements> getPlacemntlist2() {
+		// TODO Auto-generated method stub
+		return dao.getPlacemntlist2();
+	}
+
+	@Override
+	public List<Placements> forEdit(int id) {
+		// TODO Auto-generated method stub
+		return dao.forEdit(id);
+	}
+
+	@Override
+	public String updateEdited(Placements pls) {
+		// TODO Auto-generated method stub
+		return dao.updateEdited(pls);
+	}
+
+	@Override
+	public String delete(int id) {
+		// TODO Auto-generated method stub
+		return dao.delete(id);
 	}
 	
 }

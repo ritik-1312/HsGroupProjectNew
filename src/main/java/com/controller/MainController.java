@@ -1,17 +1,23 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.model.LoginModel;
+import com.model.Placements;
+import com.service.UserService;
 
 @Controller 
 public class MainController {
-
+	@Autowired
+	 UserService userService;
 	
 	@RequestMapping("/hi")
 	public String first()
@@ -20,7 +26,7 @@ public class MainController {
 	}
 	
 	@RequestMapping ("login")
-public String getlogin() {
+		public String getlogin() {
 		return "Login";
 	}
 
@@ -46,13 +52,8 @@ public String getlogin() {
 	
 	@RequestMapping("placement")
 	 public String getPlacement(){
-		return "placement";
+		return "redirect:/viewUserPlacement";
 	}
-
-	//@RequestMapping("logerif")
-	/*
-	 * public String getEmailVerify() { return "regotp"; }
-	 */
 	
 	@RequestMapping("forgpass")
 	public String Forgotpass() {
@@ -66,15 +67,17 @@ public String getlogin() {
 	}
 	
 
-	/*
-	 * @RequestMapping(value = "adlogin") public String
-	 * adminlogin(@ModelAttribute("user") LoginModel user,Model model,HttpSession
-	 * session) { //System.out.println("username :" +user.getEmail()+ "   pass:::"
-	 * +user.getPassword() ); if (user.getEmail().equals("admin") &&
-	 * user.getPassword().equals("admin")) { return "AdminDashboard"; } else {
-	 * return "redirect:/hsadamlogin"; } }
-	 */
-	
-	
+	 //Placement data for user view (placement page)
+	 @RequestMapping("viewUserPlacement")
+	 public String UserPlasementView2(HttpSession session,Model model)
+	 {
+		 List<Placements> Ulist1=userService.getPlacemntlist1();
+		 List<Placements> Ulist2=userService.getPlacemntlist2();
+		 
+		 session.setAttribute("list1", Ulist1);
+		 model.addAttribute("list2", Ulist2);
+//		 model.addAttribute("imgname",imageFildList);
+		 return "placement";
+	 }
 	
 }

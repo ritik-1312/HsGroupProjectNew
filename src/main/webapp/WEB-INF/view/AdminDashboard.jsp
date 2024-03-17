@@ -17,16 +17,18 @@
 
 <script src="https://kit.fontawesome.com/ae360af17e.js"
 	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript"
 	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="assets/css/adamindash.css">
 <link rel="stylesheet" href="assets/css/contactus.css">
+<!-- <link rel="stylesheet" href="assets/css/placement.css"> -->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+	
 </head>
 
 <body>
@@ -106,6 +108,10 @@ window.onload = function () {
 					<li class="sidebar-item"><a href="#"
 						class="sidebar-link toggle-btn" data-target="helloSection3"> <i
 							class="fa-solid fa-list pe-2"></i> Contact Us Messages
+					</a></li>
+					<li class="sidebar-item"><a href="viewPlacement"
+						class="sidebar-link toggle-btn" > <i
+							class="fa-solid fa-list pe-2"></i> Placement Student Details
 					</a></li>
 
 				</ul>
@@ -226,7 +232,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Type
-																			of Work</label> <input type="text" name="name"
+																			of Work</label> <input type="text" name="typeWork"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -238,7 +244,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Company
-																			Name</label> <input type="text" name="name"
+																			Name</label> <input type="text" name="companyName"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -250,7 +256,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Package</label>
-																		<input type="text" name="name"
+																		<input type="text" name="Pakage"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -262,7 +268,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Location</label>
-																		<input type="text" name="name"
+																		<input type="text" name="location"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -274,7 +280,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">College
-																			Name</label> <input type="text" name="name"
+																			Name</label> <input type="text" name="collegeName"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -286,7 +292,7 @@ window.onload = function () {
 																	<div class="form-outline">
 																		<label class="form-label" for="form3Example1m"
 																			style="color: aliceblue; font-size: 18px;">Branch</label>
-																		<input type="text" name="name"
+																		<input type="text" name="branch"
 																			class="form-control form-control-lg"
 																			style="width: 40vh;" />
 																	</div>
@@ -297,7 +303,7 @@ window.onload = function () {
 															<div class="form-outline  mb-4 ">
 																<label class="form-label" for="form3Example90"
 																	style="color: aliceblue; font-size: 18px;">Profile
-																	Photo</label> <input type="file" id="form3Example90"
+																	Photo</label> <input type="file" name="image" id="form3Example90"
 																	class="form-control form-control-lg" />
 															</div>
 
@@ -653,6 +659,60 @@ function confirmMultipleDelete(){
 
 					</section>
 				</div>
+				
+				<div class="container-fluid">
+					<section id="helloSection5" class="section">
+						<div class="mb-3">
+							<!-- Heading of topic -->
+							<h1 class="heading">Placement Student Details</h1>
+						</div><br>
+						<input type="search" class="input" name="text" id="searchtext" oninput="filterCards()" placeholder="search....."><br>
+					
+						<div class="wrapper">
+							<i id="left" class="fa-solid fa-angle-left"></i>
+							<ul class="carousel">
+								<c:forEach var="rma" items="${list2 }">
+									<li class="card">
+										<div class="img">
+										<img src="<c:url value='assets/upload/'/>${empty rma.imgname ? 'default_image.jpg' : rma.imgname}" alt="img" draggable="false" />
+										</div>
+										<h2>${rma.name}</h2> 
+										<span>${rma.typeWork }</span>
+										<div class="additional-info">
+											
+											<p>Company: ${rma.companyName }</p>
+											<p>Package: ${rma.pakage } LPA</p>
+											<p>Location:${rma.location }</p>
+											<p class="small-text">College: ${rma.collegeName }</p>
+											<p class="small-text">Branch: ${rma.branch }</p>
+										</div>
+										
+										<div id="btn1">
+				    						<button class="edit_button" type="submit" id="btnid1" onclick="redirectToEditPage('${rma.id}');">
+				        						<div class="sign">
+				            						<svg viewBox="0 0 512 512">
+				                						<path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+				            						</svg>
+				        						</div>
+				        						<div class="text">EDIT</div>
+				   						 </button>
+										</div>
+											 
+										<div id="btn1">
+				    					  <button class="delete_button" type="submit" id="btnid2" onclick="confirmDelete(${rma.id}); return false;">
+				        					<svg viewBox="0 0 448 512" class="svgIcon">
+				            					<path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+				        					</svg>
+				    					  </button>
+									   </div>
+									</li>
+								</c:forEach>
+							</ul>
+							<i id="right" class="fa-solid fa-angle-right"></i>
+						</div>
+					</section>
+				</div>
+					
 			</main>
 
 
@@ -804,6 +864,60 @@ function showMessage(fullMessage) {
         });
     }); */
 </script>
+
+<!-- Edit button script -->
+	
+	<script>
+    function redirectToEditPage(id) {
+        // Construct the edit page URL with the id parameter
+        var editPageUrl = 'goEditpage/' + id;
+        
+        // Navigate to the edit page URL
+        window.location.href = editPageUrl;
+    }
+</script>
+	
+	<!-- delete button script -->
+	<script>
+    function confirmDelete(id) {
+        // Use SweetAlert for confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            width: '400px',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Use AJAX to perform the delete operation
+                $.ajax({
+                    url: 'deletecard/' + id,
+                    type: 'DELETE',
+                    success: function(response) {
+                        // Optionally, you can handle the response or update the UI
+                        console.log('Delete success:', response);
+                        location.reload();
+
+                        // Show a success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The message has been deleted.',
+                        });
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Delete error:', status, error);
+                    }
+                });
+            }
+        });
+    }
+</script>
+	<script  src="assets/js/script1.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,184 @@
+.container2 {
+  display: flex;
+  padding: 0 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.card-content {
+  grid-auto-columns: calc((100% / 2) - 9px);
+  min-width: 200px; /* Adjust the min-width as needed */
+}
+.container2 {
+  max-width: 1300px;
+  width: 100%;
+  position: relative;
+}
+.card-content{
+	width: 1300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 18px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+.card-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/*  corsol2 card setting      */
+.card-content :where(.card2, .img2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ .card-content .card2{
+
+      height: 480px;
+    list-style: none;
+    background: #fff;
+    cursor: pointer;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    flex-direction: column;
+    border-radius: 30px;
+    border: 2px solid #b1b1b1;
+    margin: 14px;
+    max-width: 280px;
+    width: 280px;
+    box-shadow: 0 5px 25px rgb(1 1 1/20%);
+}
+
+.card-content .card2 .img2 {
+  background: #8B53FF;
+  height: 148px;
+  width: 148px;
+  border-radius: 50%;
+}
+.card2 .img2 img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+}
+
+.card-content .card2 h2 {
+      font-weight: 500;
+    font-size: 2.2rem;
+    margin: 30px 0 5px;
+    color: #000;
+}
+.card-content .card2 span {
+  color: #6A6D78;
+  font-size: 1.6rem;
+   margin-left: 10px;
+    margin-right: 10px;		
+}
+
+
+/* New styles for additional-info */
+.card-content .card2 .additional-info-new {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.card-content .card2 .additional-info-new p {
+    margin: 5px 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-content .card2 .additional-info-new .small-text {
+    font-size: 1.6rem;
+    color: #6A6D78;
+}
+
+@media screen and (max-width: 900px) {
+  .container2 .card-content {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container2 .card-content {
+    grid-auto-columns: 100%;
+    
+  }
+}
+
+/*style for pagination*/
+
+.pagination {
+    text-align: center;
+    margin: 30px 30px 60px;
+    user-select: none;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 5px;
+    box-shadow: 0 5px 25px rgb(1 1 1/20%);
+}
+
+.pagination li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2em;
+    line-height: 38px;
+}
+
+.previous-page, .next-page {
+    background: #C683D7;
+    width: 60px !important;
+    border-radius: 45px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.current-page, .dots {
+    background: #ccc;
+    width: 38px !important;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.previous-page:hover{
+	transform: translateX(-5px);
+	
+}
+.next-page:hover{
+	transform: translateX(-5px);
+	
+}
+
+.active{
+	background: #C683D7;
+}
+.disable{
+	background: #ccc;
+}
+#btna{
+	text-decoration: none;
+}
+
+.btn {
+    background-color: #c0c0c0; /* Change 'blue' to the color you want */
+     
+}
+#btn1{
+	display: inline-block;
+	margin: 0px;
+}
+#btnid2{
+	display: inline-block;
+	position: relative;
+	left: 120px;
+}
