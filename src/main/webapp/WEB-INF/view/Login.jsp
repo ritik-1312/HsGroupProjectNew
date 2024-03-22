@@ -274,8 +274,8 @@ body {
         <script type="text/javascript">
             Swal.fire({
                 title: "Unsuccessfull",
-                text: "Please correct your username or password",
-                icon: "fail",
+                text: "Please correct your username or password.",
+                icon: "error",
             });
         </script>
     </c:when>
