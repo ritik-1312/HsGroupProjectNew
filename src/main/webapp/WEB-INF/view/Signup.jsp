@@ -2,8 +2,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <meta name="robots" content="noindex, nofollow">
 
@@ -487,7 +489,21 @@ Contains at least one special symbol.*/
             }
       </script>
      
+<c:set var="emailexist" value="${emailexist}" />
+<c:choose>
+    <c:when test="${emailexist == 'success'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "Unsuccessfull",
+                text: "Email already exist please go to login page",
+                icon: "error",
+            });
+        </script>
+    </c:when>
 
+</c:choose>
+
+<c:remove scope="session" var="emailexist" />
 </body>
 </html>
 

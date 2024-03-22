@@ -266,8 +266,23 @@ body {
         </script>
     </c:when>
 </c:choose>
-
 <c:remove scope="session" var="sespass" />
+
+<c:set var="sesfail" value="${sesfail}" />
+<c:choose>
+    <c:when test="${sesfail == 'fail'}">
+        <script type="text/javascript">
+            Swal.fire({
+                title: "Unsuccessfull",
+                text: "Please correct your username or password",
+                icon: "fail",
+            });
+        </script>
+    </c:when>
+
+</c:choose>
+
+<c:remove scope="session" var="sesfail" />
 
 
         <header class="oai-header">

@@ -47,7 +47,7 @@ public class UserController {
 		// email checking
 		List<UserModel> list = userService.checkRegistration(email);
 		if (list != null) {
-			session.setAttribute("sesuserexist", "check");
+			session.setAttribute("emailexist", "success");
 			return "Signup";
 		} else {
 			// if not exist then send make a random otp
