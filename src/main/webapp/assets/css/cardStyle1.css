@@ -101,7 +101,7 @@
     color: #6A6D78;
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .container2 .card-content {
     grid-auto-columns: calc((100% / 2) - 9px);
   }
@@ -112,30 +112,32 @@
     grid-auto-columns: 100%;
     
   }
-}
+} */
 
 /*style for pagination*/
 
-.pagination {
+.paginationxhs {
     text-align: center;
     margin: 30px 30px 60px;
     user-select: none;
+    
 }
 
-.pagination li {
+.paginationxhs li {
     display: inline-block;
     margin: 5px;
     box-shadow: 0 5px 25px rgb(1 1 1/20%);
 }
 
-.pagination li a {
+.paginationxhs li a {
     color: #000;
     text-decoration: none;
     font-size: 1.2em;
     line-height: 38px;
+    display: inline-block;
 }
 
-.previous-page, .next-page {
+.previous-pagehs, .next-pagehs {
     background: #C683D7;
     width: 60px !important;
     border-radius: 45px;
@@ -143,28 +145,29 @@
     transition: 0.3s ease;
 }
 
-.current-page, .dots {
+.current-pagehs, .dotshs {
     background: #ccc;
     width: 38px !important;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.previous-page:hover{
+.previous-pagehs:hover{
 	transform: translateX(-5px);
-	
-}
-.next-page:hover{
-	transform: translateX(-5px);
-	
 }
 
-.active{
-	background: #C683D7;
+.next-pagehs:hover{
+	transform: translateX(-5px);
 }
-.disable{
-	background: #ccc;
+
+.activehs {
+    background: #C683D7;
 }
+
+.disablehs {
+    background: #ccc;
+}
+
 #btna{
 	text-decoration: none;
 }
@@ -181,4 +184,85 @@
 	display: inline-block;
 	position: relative;
 	left: 120px;
+}
+
+@media only screen and (max-width: 480px) {
+  /* Your styles for small screens here */
+  
+  .section-subtitle i {
+  font-size: 30px; /* Set font size for the icon within the subtitle */
+}
+
+  .container2 .card-content{
+  	 width: 400px;
+  }
+  
+  .container2 .card-content {
+    grid-auto-columns: 50%;
+    
+  }
+  
+  .wrapper .carousel {
+    grid-auto-columns: 50%;
+}
+
+  .wrapper i {
+  	height: 30px;
+   	width: 30px;
+   	line-height: 30px;
+  }
+  
+  .wrapper i:first-child {
+    left: -15px;
+  }
+  
+  .carousel .card .img {
+    height: 108px;
+    width: 108px;
+  }
+  
+   .card .img img {
+	 width: 100px;
+	 height: 100px;
+   }
+   
+   .carousel .card h2 {
+       font-size: 15px;
+   }
+   
+   .carousel .card span {
+     font-size: 12px;
+   }
+   
+   .carousel .card .additional-info p {
+       font-size: 10px;
+   }
+ 
+}
+
+/* @media only screen and (max-width: 768px) {
+  Your styles for iPad mini and similar devices here
+   .wrapper .carousel {
+    grid-auto-columns: 45%;
+}
+	.carousel .card {
+	max-height: 600px;
+   	height: 500px;
+   	max-width: 480px;
+   	width: 300px;
+   }
+   
+   .card-content {
+   width: 400px;
+   min-width: 800px;
+   }
+   
+   .paginationxhs {
+   margin: 4px;
+   }
+  
+} */
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Your styles for iPad Air and similar tablet-sized devices here */
 }

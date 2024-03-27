@@ -6,6 +6,7 @@
 <!-- Coding by CodingLab | www.codinglabweb.com  -->
 <html lang="en">
 <head>
+<link rel="stylesheet" href="assets/css/cardStyle1.css">
 <style>
 .custom {
 	background-color: black;
@@ -153,6 +154,21 @@ to {
 	opacity: 1
 }
 }
+.section-subtitle i {
+  font-size: 40px; /* Set font size for the icon within the subtitle */
+}
+.section-title {
+  font-size: 40px; /* Increase font size to 40px or your desired size */
+}
+
+@media only screen and (max-width: 480px) {
+  /* Your styles for small screens here */
+  
+  .section-subtitle i {
+  font-size: 30px; /* Set font size for the icon within the subtitle */
+} 
+
+}
 </style>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -196,7 +212,6 @@ to {
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="assets/script1.js" defer></script>
-<link rel="stylesheet" href="assets/css/cardStyle1.css">
 <link rel="stylesheet" href="assets/css/Style2.css">
 					<link href="assets/upload">
 <link rel="stylesheet" href="assets/css/placementOG.css">
@@ -267,7 +282,7 @@ to {
 		<div class="review-container container">
 			<div class="review-text">
 				<h4 class="section-subtitle">
-					<i style="font-size: 40px">Placement Drive </i>
+					<i>Placement Drive </i>
 				</h4>
 				<h2 class="section-title">What we Achived</h2>
 				<p class="section-description">Here is our students who worked
@@ -339,23 +354,19 @@ to {
 					</c:forEach>
 				</div>
 
-				<div class="pagination">
-					<ul>
-						<li class="page-item previous-page disable"><a
-							class="page-link" href="#">Prev</a></li>
-						<li class="page-item current-page active"><a
-							class="page-link" href="#">1</a></li>
-						<li class="page-item dots"><a class="page-link" href="#">...</a></li>
-						<li class="page-item current-page"><a class="page-link"
-							href="#">3</a></li>
-						<li class="page-item current-page"><a class="page-link"
-							href="#">4</a></li>
-						<li class="page-item dots"><a class="page-link" href="#">...</a></li>
-						<li class="page-item current-page"><a class="page-link"
-							href="#">6</a></li>
-						<li class="page-item next-page"><a class="page-link" href="#">Next</a></li>
-					</ul>
+				<div class="paginationxhs">
+				   <ol>
+				   		<li class="page-itemhs previous-pagehs disablehs"><a class="page-linkhs">Prev</a></li>
+				        <li class="page-itemhs current-pagehs activehs"><a class="page-linkhs" href="#">1</a></li>
+				        <li class="page-itemhs dotshs"><a class="page-linkhs" href="#">...</a></li>
+				        <li class="page-itemhs current-pagehs"><a class="page-linkhs" href="#">3</a></li>
+				        <li class="page-itemhs current-pagehs"><a class="page-linkhs" href="#">4</a></li>
+				        <li class="page-itemhs dotshs"><a class="page-linkhs" href="#">...</a></li>
+				        <li class="page-itemhs current-pagehs"><a class="page-linkhs" href="#">6</a></li>
+				        <li class="page-itemhs next-pagehs"><a class="page-linkhs" href="#">Next</a></li>
+				  </ol>
 				</div>
+
 
 			</div>
 		</div>
@@ -365,58 +376,59 @@ to {
 
 	<!-- Newsletter Section -->
 	<section class="section newsletter" id="newsletter">
-		<div class="newletter-container container">
-			<a href="#" class="logo-content flex"> <span class="logo-text">Contact
-					Us</span>
-			</a>
+			<form action="login1" method="post">
+			<div class="newletter-container container">
+				<a href="#" class="logo-content flex"> <span class="logo-text">Contact
+						Us</span>
+				</a>
 
-			<p class="section-description">Need more details? we will be
-				happy to patiently explain everything that you want to know. just
-				send the message below , and you can contact us with our
-				email/whatsapp or other social handels.</p>
+				<p class="section-description">Need more details? we will be
+					happy to patiently explain everything that you want to know. just
+					send the message below , and you can contact us with our
+					email/whatsapp or other social handels.</p>
+				
+				<div class="newsletter-inputBox">
+					<input type="text" name="name" placeholder="Your Name" class="newletter-input">
 
-			<div class="newsletter-inputBox">
-				<input type="text" placeholder="Your Name" class="newletter-input">
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<input type="email" placeholder="Your Email" name="email"
+						class="newletter-input">
 
-				<!-- <button class="button newsletter-button">Subscribe</button> -->
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<input type="text" placeholder="Your Message" name="message"
+						class="newletter-input">
+					<!-- <textarea placeholder="Your Email" class="newletter-input" id="myTextarea"></textarea> -->
+
+					<!-- <button class="button newsletter-button">Subscribe</button> -->
+				</div>
+				<div class="newsletter-inputBox">
+					<button type="submit" class="button">Send Message</button>
+				</div>
+				
+				<br>
+
+
+				<div class="newsletter media-icons flex">
+					<a href="https://www.facebook.com"><i
+						class='bx bxl-whatsapp quote-icon'></i></a> <a
+						href="https://www.facebook.com"><i
+						class='bx bxs-envelope bx-tada quote-icon'></i></a> <a
+						href="https://twitter.com/i/flow/login"><i
+						class='bx bxl-facebook quote-icon'></i></a> <a
+						href="https://www.instagram.com/accounts/login"><i
+						class='bx bxl-instagram-alt quote-icon'></i></a> <a
+						href="https://github.com/login"><i
+						class='bx bxl-github quote-icon'></i></a> <a
+						href="https://www.youtube.com/login"><i
+						class='bx bxl-youtube quote-icon'></i></a>
+				</div>
 			</div>
-			<div class="newsletter-inputBox">
-				<input type="email" placeholder="Your Email" class="newletter-input">
-
-				<!-- <button class="button newsletter-button">Subscribe</button> -->
-			</div>
-			<div class="newsletter-inputBox">
-				<input type="email" placeholder="Your Message"
-					class="newletter-input">
-				<!-- <textarea placeholder="Your Email" class="newletter-input" id="myTextarea"></textarea> -->
-
-				<!-- <button class="button newsletter-button">Subscribe</button> -->
-			</div>
-			<div class="newsletter-inputBox">
-
-
-				<button type="submit" class="button">Send Message</button>
-			</div>
-
-			<br>
-
-
-			<div class="newsletter media-icons flex">
-				<a href="https://www.facebook.com"><i
-					class='bx bxl-whatsapp quote-icon'></i></a> <a
-					href="https://www.facebook.com"><i
-					class='bx bxs-envelope bx-tada quote-icon'></i></a> <a
-					href="https://twitter.com/i/flow/login"><i
-					class='bx bxl-facebook quote-icon'></i></a> <a
-					href="https://www.instagram.com/accounts/login"><i
-					class='bx bxl-instagram-alt quote-icon'></i></a> <a
-					href="https://github.com/login"><i
-					class='bx bxl-github quote-icon'></i></a> <a
-					href="https://www.youtube.com/login"><i
-					class='bx bxl-youtube quote-icon'></i></a>
-			</div>
-		</div>
-	</section>
+			</form>
+		</section>
 
 
 

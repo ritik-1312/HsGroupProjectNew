@@ -144,7 +144,7 @@ ul {
 }
 
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .wrapper .carousel {
     grid-auto-columns: calc((100% / 2) - 9px);
   }
@@ -154,7 +154,7 @@ ul {
   .wrapper .carousel {
     grid-auto-columns: 100%;
   }
-}
+} */
 
 
 /*search input  between two corsole*/
@@ -186,7 +186,95 @@ ul {
 }
 
 /* media query for cards */
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 768px) {
+  Your styles for iPad mini and similar devices here
+   .wrapper .carousel {
+    grid-auto-columns: 45%;
+}
+	.carousel .card {
+	max-height: 600px;
+   	height: 500px;
+   	max-width: 480px;
+   	width: 300px;
+   }
+   
+   card-content {
+   width: 400px;
+   min-width: 800px;
+   }
   
+} */
+
+@media only screen and (max-width: 480px) {
+  /* Your styles for small screens here */
+  
+  .section-subtitle i {
+  font-size: 30px; /* Set font size for the icon within the subtitle */
 }
 
+  .container2 .card-content{
+  	 width: 400px;
+  	 
+  }
+  
+  .container2 .card-content {
+    grid-auto-columns: 50%;
+    
+  }
+  
+  .wrapper .carousel {
+    grid-auto-columns: 70%;
+}
+
+  .wrapper i {
+  	height: 30px;
+   	width: 30px;
+   	line-height: 30px;
+  }
+  
+  .wrapper i:first-child {
+    left: -15px;
+  }
+  
+  .carousel .card .img {
+    height: 108px;
+    width: 108px;
+  }
+  
+   .card .img img {
+	 width: 100px;
+	 height: 100px;
+   }
+   
+   .carousel .card h2 {
+       font-size: 18px;
+   }
+   
+   .carousel .card span {
+     font-size: 12px;
+   }
+   
+   .carousel .card .additional-info p {
+       font-size: 12px;
+   }
+   
+   .carousel .card .additional-info .small-text {
+   	font-size: 12px;
+   }
+   
+   .carousel .card {
+   	height: 420px;
+   	max-width: 250px;
+   }
+ 
+}
+
+/* @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  Your styles for iPad Air and similar tablet-sized devices here
+  .wrapper .carousel {
+    grid-auto-columns: 42%;
+}
+.carousel .card {
+	max-width: 290px;
+}
+} */

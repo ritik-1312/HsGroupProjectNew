@@ -78,54 +78,62 @@ function getPageList(totalPages, page , maxLength){
 
 
 $(function(){
-	var numberOfItems = $(".card-content .card2").length  //number of cards (card length) 
-	var limitPerPage = 4;  	//how many card items visible per a page
-	var totalPages = Math.ceil(numberOfItems / limitPerPage);
-	var paginationSize = 7 ; //pagination 1 2 3 4 ...(4 cards each)
-	var currentPage ;
-	
-	function showPage(whichPage){
-		if(whichPage < 1 || whichPage > totalPages) return false;
-		currentPage = whichPage;
-		$(".card-content .card2").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show(); 
-		$(".pagination li").slice(1, -1).remove();
-		
-		getPageList(totalPages, currentPage, paginationSize).forEach(item => {
-			$("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
-			.toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
-			.attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-page");
-		});
-		
-		$(".previous-page").toggleClass("disable", currentPage === 1);
-		$(".next-page").toggleClass("disable", currentPage === totalPages);
-		return true;
-		
-	}  //showPage function body
-	
-	
-	$(".pagination").append(
-		$("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Prev")),
-		$("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Next"))
-	);
-	
-	$(".card-content").show();
-	showPage(1);
-	
-	
-	$(document).on("click", ".pagination li.current-page:not(.active)", function(){
-		return showPage(+$(this).text());
-	});
-	
-	$(".next-page").on("click", function(){
-		return showPage(currentPage + 1);
-	});
-	
-	$(".previous-page").on("click", function(){
-		return showPage(currentPage - 1);
-	});
-	
-	
-	
+    var numberOfItems = $(".card-content .card2").length;  //number of cards (card length) 
+     var limitPerPage;
+
+  // Determine limit based on screen width
+  if ($(window).width() <= 768) { // Adjust the breakpoint as needed (e.g., for tablets)
+    limitPerPage = 2; // Show 2 cards on small screens (max-width 768px)
+  } else {
+    limitPerPage = 4; // Show 4 cards on larger screens
+  }
+  
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    var paginationSize = 7 ; //pagination 1 2 3 4 ...(4 cards each)
+    var currentPage ;
+    
+    function showPage(whichPage){
+        if(whichPage < 1 || whichPage > totalPages) return false;
+        currentPage = whichPage;
+        $(".card-content .card2").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show(); 
+        $(".paginationxhs li").slice(1, -1).remove();
+        
+        getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+            $("<li>").addClass("page-itemhs").addClass(item ? "current-pagehs" : "dotshs")
+            .toggleClass("activehs", item === currentPage).append($("<a>").addClass("page-linkhs")
+            .attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-pagehs");
+        });
+        
+        $(".previous-pagehs").toggleClass("disablehs", currentPage === 1);
+        $(".next-pagehs").toggleClass("disablehs", currentPage === totalPages);
+        return true;
+        
+    }  //showPage function body
+    
+    
+    $(".paginationxhs").append(
+        $("<li>").addClass("page-itemhs").addClass("previous-pagehs").append($("<a>").addClass("page-linkhs").attr({href: "javascript:void(0)"}).text("Prev")),
+        $("<li>").addClass("page-itemhs").addClass("next-pagehs").append($("<a>").addClass("page-linkhs").attr({href: "javascript:void(0)"}).text("Next"))
+    );
+    
+    $(".card-content").show();
+    showPage(1);
+    
+    
+    $(document).on("click", ".paginationxhs li.current-pagehs:not(.activehs)", function(){
+        return showPage(+$(this).text());
+    });
+    
+    $(".next-pagehs").on("click", function(){
+        return showPage(currentPage + 1);
+    });
+    
+    $(".previous-pagehs").on("click", function(){
+        return showPage(currentPage - 1);
+    });
+    
+    
+    
 });
 
 function filterCards() {

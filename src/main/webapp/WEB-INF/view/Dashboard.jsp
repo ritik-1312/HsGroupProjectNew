@@ -45,6 +45,8 @@ window.onload = function () {
 .code-container {
 	position: relative;
 	margin: 20px;
+	    background-color: #3f3f3f;
+	    color: #fff;
 }
 
 /* .copybtn {
@@ -409,7 +411,7 @@ window.onload = function () {
 											
 												<textarea class="code-textarea forcopybtn-${textindex}" readonly>
                              						   <c:out value="${fileContent}" />
-                         					m   </textarea>
+                         					   </textarea>
                          					
 												<button class="copy" onclick="copyToClipboard('${textindex}')">
 													  <span data-text-end="Copied!" data-text-initial="Copy to clipboard" class="tooltip"></span>
@@ -521,7 +523,7 @@ window.onload = function () {
 				            	            var codeTextarea = document.querySelector('.forcopybtn-' + textindex);
 				            	            codeTextarea.select();
 				            	            document.execCommand('copy');
-				            	            alert('Code copied to clipboard!');
+				            	             /* alert('Code copied to clipboard!'); */
 				            	        }	
 				            		    
 										</script>
